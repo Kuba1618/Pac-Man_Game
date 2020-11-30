@@ -10,10 +10,12 @@ using namespace sf;
 class Engine
 {
 public:
+	bool isRunning = true;
 
 	void startGame();
 	void display(RenderWindow *window);
-	Sprite drawObject(Object *object,String nameOfImage);
+	void loadTextureToObject(Object *object,String nameOfImage);
+	void movePacMan(Sprite *object);
 	void endGame();
 };
 #endif

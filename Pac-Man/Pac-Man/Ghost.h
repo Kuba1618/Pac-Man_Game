@@ -8,7 +8,7 @@ using namespace sf;
 class Ghost : public Object 
 {
 public:
-	Ghost(int posX = 0, int posY = 0);
+	Ghost(float posX = (0.0F), float posY = (0.0F),String nameOfFile="");
 	~Ghost();
 };
 #endif // !GHOST_H

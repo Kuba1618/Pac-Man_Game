@@ -6,36 +6,45 @@
 using namespace std;
 using namespace sf;
 
-Sprite Engine::drawObject(Object *object,String nameOfImage)
-{
-	Texture texture1;
 
-	if (!texture1.loadFromFile(nameOfImage))
+void Engine::movePacMan(Sprite *player)
+{
+	float speed = 0.09;
+	if (Keyboard::isKeyPressed(Keyboard::Key::Left))
 	{
-		cout << "Cos poszlo nie tak - plik nie zosta³ otwarty\n";
-		system("exit");
+		player->move(-speed, 0.00);
 	}
-	object->texture = texture1;
-	Sprite picture(object->texture);
-	return picture;
+	if (Keyboard::isKeyPressed(Keyboard::Key::Right))
+	{
+		player->move(speed, 0.00);
+	}
+	if (Keyboard::isKeyPressed(Keyboard::Key::Up))
+	{
+		player->move(0.00, -speed);
+	}
+	if (Keyboard::isKeyPressed(Keyboard::Key::Down))
+	{
+		player->move(0.00, speed);
+	}
 }
 
 void Engine::display(RenderWindow *window)
 {
-	//Object *object = new Object();
-	Ghost *ghost = new Ghost(0,0);
-	while (window->isOpen())
+	Ghost *ghost = new Ghost(50.0f,50.0f, "PacManGhost.jpg");
+	Sprite ghostSprite(ghost->texture);
+	ghostSprite.setPosition(ghost->posX,ghost->posY);
+	
+	while (window->isOpen() && isRunning)
 	{
 		Event event;
 		while (window->pollEvent(event))
 		{
 			if (event.type == Event::Closed)
 				window->close();
-		}
-	
-		
+		}		
 		window->clear();
-		window->draw(drawObject(ghost, "PacManGhost.jpg"));
+		window->draw(ghostSprite);
+		movePacMan(&ghostSprite);
 		window->display();
 	}
 }
@@ -45,4 +54,9 @@ void Engine::startGame()
 	RenderWindow window(VideoMode(640, 480), "Pac-Man");
 	display(&window);
 
+}
+
+void Engine::endGame()
+{
+	this->isRunning = false;
 }
