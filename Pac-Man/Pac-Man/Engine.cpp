@@ -1,6 +1,7 @@
 #include <iostream>
 #include <SFML\Graphics.hpp>
 #include "Engine.h";
+#include "Ghost.h";
 
 using namespace std;
 using namespace sf;
@@ -21,7 +22,8 @@ Sprite Engine::drawObject(Object *object,String nameOfImage)
 
 void Engine::display(RenderWindow *window)
 {
-	Object *object = new Object();
+	//Object *object = new Object();
+	Ghost *ghost = new Ghost(0,0);
 	while (window->isOpen())
 	{
 		Event event;
@@ -33,7 +35,7 @@ void Engine::display(RenderWindow *window)
 	
 		
 		window->clear();
-		window->draw(drawObject(object, "PacManGhost.jpg"));
+		window->draw(drawObject(ghost, "PacManGhost.jpg"));
 		window->display();
 	}
 }
