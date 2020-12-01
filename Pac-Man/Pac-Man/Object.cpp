@@ -15,6 +15,13 @@ void Object::setTexture(String nameOfImage)
 		system("exit");
 	}
 	this->texture = texture1;
+	imageObject.setTexture(this->texture);
+	if (Object::startOfGame)
+	{
+		imageObject.setPosition(posX, posY);
+		startOfGame = false;
+	}
+
 }
 
 Object::Object(int width, int height, float posX, float posY, String nameOfImage)
@@ -29,11 +36,11 @@ Object::Object(int width, int height, float posX, float posY, String nameOfImage
 Object::~Object() {}
 int Object::getPosX()
 {
-	return posX;
+	return this->posX;
 }
 int Object::getPosY()
 {
-	return posY;
+	return this->posY;
 }
 Texture Object::getTexture()
 {

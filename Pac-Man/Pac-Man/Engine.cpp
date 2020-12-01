@@ -3,6 +3,7 @@
 #include "Engine.h";
 #include "Ghost.h";
 #include "Brick.h";
+#include "PacMan.h";
 
 using namespace std;
 using namespace sf;
@@ -61,10 +62,9 @@ void Engine::movePacMan(Ghost *pacMan,Sprite *player)
 
 void Engine::display(RenderWindow *window)
 {
-	Ghost *ghost = new Ghost(50.0f,50.0f,"PacManGhostRight.jpg");
-	Sprite ghostSprite(ghost->texture);
-	ghostSprite.setPosition(ghost->posX,ghost->posY);
-	
+	//Ghost *ghost = new Ghost(50.0f,50.0f,"PacManGhostRight.jpg");
+	PacMan *ghost = new PacMan();
+		
 	Brick *brick1 = new Brick();
 	Sprite brickObject(brick1->texture);
 
@@ -77,8 +77,8 @@ void Engine::display(RenderWindow *window)
 				window->close();
 		}		
 		window->clear();
-		window->draw(ghostSprite);
-		movePacMan(ghost,&ghostSprite);
+		window->draw(ghost->imageObject);
+		movePacMan(ghost,&(ghost->imageObject));
 		window->draw(brickObject);
 		window->display();
 	}
