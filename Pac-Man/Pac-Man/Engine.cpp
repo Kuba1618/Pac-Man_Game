@@ -40,12 +40,14 @@ void Engine::movePacMan(Ghost *pacMan,Sprite *player)
 	{
 		pacMan->setTexture("PacManGhostRight.jpg");
 		player->setTexture(pacMan->texture);
+		player->setRotation(0.0f);
 		player->move(speed, 0.00);
 	}
 	if (Keyboard::isKeyPressed(Keyboard::Key::Up))
 	{
 		pacMan->setTexture("PacManGhostUP.jpg");
 		player->setTexture(pacMan->texture);
+		//player->setRotation(-90.0f);
 		player->move(0.00, -speed);
 	}
 	if (Keyboard::isKeyPressed(Keyboard::Key::Down))
