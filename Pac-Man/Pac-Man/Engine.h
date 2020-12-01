@@ -3,6 +3,7 @@
 #include <iostream>
 #include <SFML\Graphics.hpp>
 #include "Object.h";
+#include "Ghost.h";
 
 using namespace std;
 using namespace sf;
@@ -14,8 +15,9 @@ public:
 
 	void startGame();
 	void display(RenderWindow *window);
-	void loadTextureToObject(Object *object,String nameOfImage);
-	void movePacMan(Sprite *object);
+	//void setTexture(Object *object,String nameOfImage);
+	void moveGhost(Sprite *object);
+	void movePacMan(Ghost *pacMan,Sprite *object);
 	void endGame();
 };
 #endif

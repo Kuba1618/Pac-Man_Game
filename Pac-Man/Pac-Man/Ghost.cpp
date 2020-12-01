@@ -12,5 +12,5 @@ Ghost::Ghost(float posX, float posY,String nameOfFile) : Object(30,30,posX,posY,
 }
 Ghost::~Ghost()
 {
-	cout << "Niszczenie obiektu";
+	cout << "Niszczenie obiektu ducha";
 }

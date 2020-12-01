@@ -7,7 +7,7 @@ using namespace std;
 using namespace sf;
 
 
-void Engine::movePacMan(Sprite *player)
+void Engine::moveGhost(Sprite *player)
 {
 	float speed = 0.09;
 	if (Keyboard::isKeyPressed(Keyboard::Key::Left))
@@ -27,10 +27,38 @@ void Engine::movePacMan(Sprite *player)
 		player->move(0.00, speed);
 	}
 }
+void Engine::movePacMan(Ghost *pacMan,Sprite *player)
+{
+	float speed = 0.09;
+	if (Keyboard::isKeyPressed(Keyboard::Key::Left))
+	{
+		pacMan->setTexture("PacManGhostLeft.jpg");
+		player->setTexture(pacMan->texture);
+		player->move(-speed, 0.00);
+	}
+	if (Keyboard::isKeyPressed(Keyboard::Key::Right))
+	{
+		pacMan->setTexture("PacManGhostRight.jpg");
+		player->setTexture(pacMan->texture);
+		player->move(speed, 0.00);
+	}
+	if (Keyboard::isKeyPressed(Keyboard::Key::Up))
+	{
+		pacMan->setTexture("PacManGhostUP.jpg");
+		player->setTexture(pacMan->texture);
+		player->move(0.00, -speed);
+	}
+	if (Keyboard::isKeyPressed(Keyboard::Key::Down))
+	{
+		pacMan->setTexture("PacManGhostDown.jpg");
+		player->setTexture(pacMan->texture);
+		player->move(0.00, speed);
+	}
+}
 
 void Engine::display(RenderWindow *window)
 {
-	Ghost *ghost = new Ghost(50.0f,50.0f, "PacManGhost.jpg");
+	Ghost *ghost = new Ghost(50.0f,50.0f,"PacManGhostRight.jpg");
 	Sprite ghostSprite(ghost->texture);
 	ghostSprite.setPosition(ghost->posX,ghost->posY);
 	
@@ -44,7 +72,7 @@ void Engine::display(RenderWindow *window)
 		}		
 		window->clear();
 		window->draw(ghostSprite);
-		movePacMan(&ghostSprite);
+		movePacMan(ghost,&ghostSprite);
 		window->display();
 	}
 }
