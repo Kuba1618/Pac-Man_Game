@@ -2,6 +2,7 @@
 #include <SFML\Graphics.hpp>
 #include "Engine.h";
 #include "Ghost.h";
+#include "Brick.h";
 
 using namespace std;
 using namespace sf;
@@ -64,6 +65,9 @@ void Engine::display(RenderWindow *window)
 	Sprite ghostSprite(ghost->texture);
 	ghostSprite.setPosition(ghost->posX,ghost->posY);
 	
+	Brick *brick1 = new Brick();
+	Sprite brickObject(brick1->texture);
+
 	while (window->isOpen() && isRunning)
 	{
 		Event event;
@@ -75,6 +79,7 @@ void Engine::display(RenderWindow *window)
 		window->clear();
 		window->draw(ghostSprite);
 		movePacMan(ghost,&ghostSprite);
+		window->draw(brickObject);
 		window->display();
 	}
 }
