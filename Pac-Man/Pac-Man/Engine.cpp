@@ -67,7 +67,7 @@ void Engine::loadMap(Map *map)
 	{
 		for (int x = 0; x <= (map->x_kafli) - 1; x++)
 		{
-			if (x == 0 || y == 0)
+			if (x == 0 || y == 0 || x == ((map->x_kafli)-2) || y == ((map->y_kafli) - 2))
 			{
 				map->kafelek[x][y].setPosition((float)(x * (map->tile_width)), (float)(y * (map->tile_height)));
 				map->kafelek[x][y].setTexture(map->wall);
@@ -79,11 +79,11 @@ void Engine::loadMap(Map *map)
 
 void Engine::display(RenderWindow *window)
 {
-	//Ghost *ghost = new Ghost();
-	PacMan *ghost = new PacMan();
+	Ghost *ghost = new Ghost();
+	PacMan *pacMan = new PacMan();
 		
-	Brick *brick1 = new Brick();
-	Sprite brickObject(brick1->texture);
+	//Brick *brick1 = new Brick();
+	//Sprite brickObject(brick1->texture);
 
 	Map *map = new Map();
 	loadMap(map);
@@ -104,16 +104,16 @@ void Engine::display(RenderWindow *window)
 				window->draw(map->kafelek[x][y]);
 			}
 		}
+		window->draw(pacMan->imageObject);
+		movePacMan(pacMan,&(pacMan->imageObject));
 		window->draw(ghost->imageObject);
-		movePacMan(ghost,&(ghost->imageObject));
-		window->draw(brickObject);
 		window->display();
 	}
 }
 
 void Engine::startGame()
 {
-	RenderWindow window(VideoMode(640, 480), "Pac-Man");
+	RenderWindow window(VideoMode(640, 460), "Pac-Man");
 	display(&window);
 
 }
