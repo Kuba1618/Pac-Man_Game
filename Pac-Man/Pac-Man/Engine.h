@@ -4,6 +4,7 @@
 #include <SFML\Graphics.hpp>
 #include "Object.h";
 #include "Ghost.h";
+#include "Map.h";
 
 using namespace std;
 using namespace sf;
@@ -14,8 +15,8 @@ public:
 	bool isRunning = true;
 
 	void startGame();
+	void loadMap(Map *map);
 	void display(RenderWindow *window);
-	//void setTexture(Object *object,String nameOfImage);
 	void moveGhost(Sprite *object);
 	void movePacMan(Ghost *pacMan,Sprite *object);
 	void endGame();
