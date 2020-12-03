@@ -8,6 +8,8 @@ using namespace sf;
 class Ghost : public Object 
 {
 public:
+	bool pacMan;
+	float speed;
 	Ghost(float posX = (120.0F), float posY = (200.0F),String nameOfFile = "orangeGhost.jpg");
 	~Ghost();
 };

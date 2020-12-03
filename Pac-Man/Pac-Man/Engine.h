@@ -17,8 +17,9 @@ public:
 	void startGame();
 	void loadMap(Map *map);
 	void display(RenderWindow *window);
-	void moveGhost(Sprite *object);
-	void movePacMan(Ghost *pacMan,Sprite *object);
+	//void moveObject(Ghost *ghost, Map *map);
+	void moveGhost(Sprite *object,int direction);
+	void movePacMan(Map *map, Ghost *pacMan, Sprite *player);
 	void endGame();
 };
 #endif

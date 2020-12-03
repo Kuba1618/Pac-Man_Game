@@ -5,6 +5,27 @@
 using namespace std;
 using namespace sf;
 
+Object::Object(int width, int height, float posX, float posY, String nameOfImage)
+{
+	this->width = width;
+	this->height = height;
+	this->posX = posX;
+	this->posY = posY;
+	setTexture(nameOfImage);
+}
+
+Object::~Object() {}
+
+int Object::getPosX()
+{
+	return this->posX;
+}
+
+int Object::getPosY()
+{
+	return this->posY;
+}
+
 void Object::setTexture(String nameOfImage)
 {
 	Texture texture1;
@@ -24,24 +45,6 @@ void Object::setTexture(String nameOfImage)
 
 }
 
-Object::Object(int width, int height, float posX, float posY, String nameOfImage)
-{
-	this->width = width;
-	this->height = height;
-	this->posX = posX;
-	this->posY = posY;
-	setTexture(nameOfImage);
-}
-
-Object::~Object() {}
-int Object::getPosX()
-{
-	return this->posX;
-}
-int Object::getPosY()
-{
-	return this->posY;
-}
 Texture Object::getTexture()
 {
 	return this->texture;
