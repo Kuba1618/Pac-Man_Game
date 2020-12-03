@@ -11,10 +11,10 @@ using namespace sf;
 
 void Engine::moveGhost(Sprite *player)
 {
-	float speed = 0.09;
+	float speed = 0.09f;
 	if (Keyboard::isKeyPressed(Keyboard::Key::Left))
 	{
-		player->move(-speed, 0.00);
+		player->move(-speed, 0.00f);
 	}
 	if (Keyboard::isKeyPressed(Keyboard::Key::Right))
 	{
@@ -22,41 +22,41 @@ void Engine::moveGhost(Sprite *player)
 	}
 	if (Keyboard::isKeyPressed(Keyboard::Key::Up))
 	{
-		player->move(0.00, -speed);
+		player->move(0.00f, -speed);
 	}
 	if (Keyboard::isKeyPressed(Keyboard::Key::Down))
 	{
-		player->move(0.00, speed);
+		player->move(0.00f, speed);
 	}
 }
 void Engine::movePacMan(Ghost *pacMan,Sprite *player)
 {
-	float speed = 0.09;
+	float speed = 0.09f;
 	if (Keyboard::isKeyPressed(Keyboard::Key::Left))
 	{
 		pacMan->setTexture("PacManGhostLeft.jpg");
 		player->setTexture(pacMan->texture);
-		player->move(-speed, 0.00);
+		player->move(-speed, 0.00f);
 	}
 	if (Keyboard::isKeyPressed(Keyboard::Key::Right))
 	{
 		pacMan->setTexture("PacManGhostRight.jpg");
 		player->setTexture(pacMan->texture);
 		player->setRotation(0.0f);
-		player->move(speed, 0.00);
+		player->move(speed, 0.00f);
 	}
 	if (Keyboard::isKeyPressed(Keyboard::Key::Up))
 	{
 		pacMan->setTexture("PacManGhostUP.jpg");
 		player->setTexture(pacMan->texture);
 		//player->setRotation(-90.0f);
-		player->move(0.00, -speed);
+		player->move(0.00f, -speed);
 	}
 	if (Keyboard::isKeyPressed(Keyboard::Key::Down))
 	{
 		pacMan->setTexture("PacManGhostDown.jpg");
 		player->setTexture(pacMan->texture);
-		player->move(0.00, speed);
+		player->move(0.00f, speed);
 	}
 }
 
