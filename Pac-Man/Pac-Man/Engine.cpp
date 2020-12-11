@@ -44,8 +44,8 @@ void Engine::movePacMan(Map *map,Ghost *pacMan,Sprite *player)
 		for (int x = 0; x <= (map->x_kafli) - 2; x++)
 		{
 			if (pacMan->imageObject.getPosition().x + (map->tile_width) == map->kafelek[x][y].getPosition().x
-				&& pacMan->imageObject.getPosition().y + (map->tile_height) == (map->kafelek[x][y]).getPosition().y
-				&& map->isWall[x][y] == 1)
+				&& pacMan->imageObject.getPosition().y + (map->tile_height) == (map->kafelek[x][y]).getPosition().y)
+				//&& map->isWall[x][y] == 1)
 			{
 				pacMan->collision = true;
 			}
@@ -62,7 +62,7 @@ void Engine::movePacMan(Map *map,Ghost *pacMan,Sprite *player)
 		}
 		if (Keyboard::isKeyPressed(Keyboard::Key::Right))
 		{
-			pacMan->setTexture("PacManGhostRight.jpg");
+			pacMan->setTexture("PacManGhostRight.png");
 			player->setTexture(pacMan->texture);
 			player->setRotation(0.0f);
 			player->move((pacMan->speed), 0.00f);
@@ -136,13 +136,20 @@ void Engine::display(RenderWindow *window)
 {
 	Ghost *ghost = new Ghost();
 	Ghost *ghost2 = new Ghost((220.0f),(120.0f),"blueGhost1.jpg");
-	PacMan *pacMan = new PacMan(300.0f,360.0f,"PacManGhostRight.jpg");
+	PacMan *pacMan = new PacMan(300.0f,360.0f,"pacManIcon.png");
 	Food *food1 = new Food(5,"food.jpg");
 	Food *food2 = new Food(5, "food.jpg");
 	Food *food3 = new Food(5, "food.jpg");
 	Food *food4 = new Food(5, "food.jpg");
 	Food *food5 = new Food(5, "food.jpg");
 
+	Image *image2 = new Image();
+	image2->loadFromFile("PacManGhostRight.png");
+	image2->createMaskFromColor(Color::Black);
+	Sprite *sprite = new Sprite();
+	
+	
+	
 	food2->imageObject.setPosition(50.0f,80.0f);
 	food3->imageObject.setPosition(50.0f,110.0f);
 	food4->imageObject.setPosition(50.0f,140.0f);
@@ -159,7 +166,7 @@ void Engine::display(RenderWindow *window)
 			if (event.type == Event::Closed)
 				window->close();
 		}		
-		window->clear();
+		window->clear(Color::White);
 		for (int y = 0; y < (map->y_kafli) - 1; y++)
 		{
 			for (int x = 0; x < (map->x_kafli) - 1; x++)

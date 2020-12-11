@@ -1,4 +1,5 @@
 #include <SFML\Graphics.hpp>
+#include <SFML\System.hpp>
 #include "Object.h";
 #include <iostream>
 
@@ -28,14 +29,11 @@ int Object::getPosY()
 
 void Object::setTexture(String nameOfImage)
 {
-	Texture texture1;
-
-	if (!texture1.loadFromFile(nameOfImage))
+	if (!this->texture.loadFromFile(nameOfImage))
 	{
 		cout << "Cos poszlo nie tak - plik nie zosta³ otwarty\n";
 		system("exit");
 	}
-	this->texture = texture1;
 	imageObject.setTexture(this->texture);
 	if (Object::startOfGame)
 	{
