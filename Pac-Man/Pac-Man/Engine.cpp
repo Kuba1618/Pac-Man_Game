@@ -13,9 +13,6 @@ using namespace sf;
 
 void Engine::moveGhost(Sprite *player,Ghost *ghost,int direction)
 {
-	float speed = 0.005f;
-
-	player->move(ghost->speed, 0.00);
 
 	switch (direction)
 	{
@@ -26,13 +23,13 @@ void Engine::moveGhost(Sprite *player,Ghost *ghost,int direction)
 	}
 	case 2:
 	{
-		player->move(-speed, 0.00f);
+		player->move(-(ghost->speed), 0.00f);
 		break;
 	}
 	default:
 	{
 		//player->move(speed, 0.00f);
-		player->move(speed, speed);
+		player->move(ghost->speed, ghost->speed);
 	}
 	}
 }
