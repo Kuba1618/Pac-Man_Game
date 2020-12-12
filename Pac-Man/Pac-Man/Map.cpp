@@ -2,6 +2,6 @@
 
 Map::Map()
 {
-	this->nameOfImage = "brick2.jpg";
+	this->nameOfImage = "../../Graphics/brick2.jpg";
 	this->wall.loadFromFile(this->nameOfImage);
 }

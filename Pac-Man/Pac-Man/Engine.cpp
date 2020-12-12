@@ -39,7 +39,7 @@ void Engine::moveGhost(Sprite *player,int direction)
 
 void Engine::movePacMan(Map *map,Ghost *pacMan,Sprite *player)
 {
-	for (int y = 0; y <= (map->y_kafli) - 2; y++)
+	/*for (int y = 0; y <= (map->y_kafli) - 2; y++)
 	{
 		for (int x = 0; x <= (map->x_kafli) - 2; x++)
 		{
@@ -50,33 +50,33 @@ void Engine::movePacMan(Map *map,Ghost *pacMan,Sprite *player)
 				pacMan->collision = true;
 			}
 		}
-	}
+	}*/
 	
 	if ((pacMan->collision) == false)
 	{
 		if (Keyboard::isKeyPressed(Keyboard::Key::Left))
 		{
-			pacMan->setTexture("PacManGhostLeft.jpg");
+			pacMan->setTexture("pacManIconLeft.png");
 			player->setTexture(pacMan->texture);
 			player->move(-(pacMan->speed), 0.00f);
 		}
 		if (Keyboard::isKeyPressed(Keyboard::Key::Right))
 		{
-			pacMan->setTexture("PacManGhostRight.png");
+			pacMan->setTexture("pacManIcon.png");
 			player->setTexture(pacMan->texture);
 			player->setRotation(0.0f);
 			player->move((pacMan->speed), 0.00f);
 		}
 		if (Keyboard::isKeyPressed(Keyboard::Key::Up))
 		{
-			pacMan->setTexture("PacManGhostUP.jpg");
+			pacMan->setTexture("pacManIconUp.png");
 			player->setTexture(pacMan->texture);
 			//player->setRotation(-90.0f);
 			player->move(0.00f, -(pacMan->speed));
 		}
 		if (Keyboard::isKeyPressed(Keyboard::Key::Down))
 		{
-			pacMan->setTexture("PacManGhostDown.jpg");
+			pacMan->setTexture("pacManIconDown.png");
 			player->setTexture(pacMan->texture);
 			player->move(0.00f, (pacMan->speed));
 		}
@@ -137,24 +137,18 @@ void Engine::display(RenderWindow *window)
 	Ghost *ghost = new Ghost();
 	Ghost *ghost2 = new Ghost((220.0f),(120.0f),"blueGhost1.jpg");
 	PacMan *pacMan = new PacMan(300.0f,360.0f,"pacManIcon.png");
-	Food *food1 = new Food(5,"food.jpg");
-	Food *food2 = new Food(5, "food.jpg");
-	Food *food3 = new Food(5, "food.jpg");
-	Food *food4 = new Food(5, "food.jpg");
-	Food *food5 = new Food(5, "food.jpg");
+	Food *food1 = new Food(5, 50.0f, 80.0f,"food.png");
+	Food *food2 = new Food(5, 50.0f, 110.0f,"food.png");
+	Food *food3 = new Food(5, 50.0f, 140.0f,"food.png");
+	Food *food4 = new Food(5, 50.0f, 170.0f,"food.png");
+	Food *food5 = new Food();
 
-	Image *image2 = new Image();
-	image2->loadFromFile("PacManGhostRight.png");
-	image2->createMaskFromColor(Color::Black);
-	Sprite *sprite = new Sprite();
 	
-	
-	
-	food2->imageObject.setPosition(50.0f,80.0f);
-	food3->imageObject.setPosition(50.0f,110.0f);
-	food4->imageObject.setPosition(50.0f,140.0f);
-	food5->imageObject.setPosition(50.0f,170.0f);
-	
+	/*food2->imageObject.setPosition();
+	food3->imageObject.setPosition();
+	food4->imageObject.setPosition();
+	food5->imageObject.setPosition();
+	*/
 	Map *map = new Map();
 	loadMap(map);
 
@@ -166,7 +160,7 @@ void Engine::display(RenderWindow *window)
 			if (event.type == Event::Closed)
 				window->close();
 		}		
-		window->clear(Color::White);
+		window->clear(Color::Black);
 		for (int y = 0; y < (map->y_kafli) - 1; y++)
 		{
 			for (int x = 0; x < (map->x_kafli) - 1; x++)

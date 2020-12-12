@@ -29,9 +29,9 @@ int Object::getPosY()
 
 void Object::setTexture(String nameOfImage)
 {
-	if (!this->texture.loadFromFile(nameOfImage))
+	if (!this->texture.loadFromFile("../../Graphics/" + nameOfImage))
 	{
-		cout << "Cos poszlo nie tak - plik nie zosta³ otwarty\n";
+		cout << "Cos poszlo nie tak - plik nie zostal otwarty\n";
 		system("exit");
 	}
 	imageObject.setTexture(this->texture);

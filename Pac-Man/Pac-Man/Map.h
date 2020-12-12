@@ -1,10 +1,9 @@
 #ifndef MAP_H
 #define MAP_H
 #include <SFML\Graphics.hpp>
-
 using namespace sf;
 
-class Map 
+class Map
 {
 public:
 	const int x_kafli = 22;
@@ -18,6 +17,5 @@ public:
 	Texture wall;
 	Sprite kafelek[22][16];
 	Map();
-
 };
 #endif
