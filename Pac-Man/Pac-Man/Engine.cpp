@@ -28,7 +28,6 @@ void Engine::moveGhost(Sprite *player,Ghost *ghost,int direction)
 	}
 	default:
 	{
-		//player->move(speed, 0.00f);
 		player->move(ghost->speed, ghost->speed);
 	}
 	}
