@@ -11,17 +11,17 @@ using namespace std;
 using namespace sf;
 
 
-void Engine::moveGhost(Sprite *player,int direction)
+void Engine::moveGhost(Sprite *player,Ghost *ghost,int direction)
 {
 	float speed = 0.005f;
 
-	player->move(speed, 0.00);
+	player->move(ghost->speed, 0.00);
 
 	switch (direction)
 	{
 	case 1:
 	{
-		player->move(speed, 0.00f);
+		player->move(ghost->speed, 0.00f);
 		break;
 	}
 	case 2:
@@ -135,8 +135,8 @@ void Engine::loadMap(Map *map)
 void Engine::display(RenderWindow *window)
 {
 	Ghost *ghost = new Ghost();
-	Ghost *ghost2 = new Ghost((220.0f),(120.0f),"blueGhost1.jpg");
-	PacMan *pacMan = new PacMan(300.0f,360.0f,"pacManIcon.png");
+	Ghost *ghost2 = new Ghost((220.0f),(120.0f),0.03f,"blueGhost.png");
+	PacMan *pacMan = new PacMan((300.0f),(360.0f),0.06f,"pacManIcon.png");
 	Food *food1 = new Food(5, 50.0f, 80.0f,"food.png");
 	Food *food2 = new Food(5, 50.0f, 110.0f,"food.png");
 	Food *food3 = new Food(5, 50.0f, 140.0f,"food.png");
@@ -176,9 +176,9 @@ void Engine::display(RenderWindow *window)
 		window->draw(pacMan->imageObject);
 		movePacMan(map,pacMan,&(pacMan->imageObject));
 		window->draw(ghost->imageObject);
-		moveGhost(&ghost->imageObject,1);
+		moveGhost(&ghost->imageObject,ghost,1);
 		window->draw(ghost2->imageObject);
-		moveGhost(&ghost2->imageObject,2);
+		moveGhost(&ghost2->imageObject,ghost2,2);
 		window->display();
 	}
 }

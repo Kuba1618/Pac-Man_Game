@@ -1,8 +1,8 @@
 #include "PacMan.h"
 
 
-PacMan::PacMan(float posX,float posY, String nameOfFile) : 
-	           Ghost(posX,posY,nameOfFile)
+PacMan::PacMan(float posX,float posY,float speed,String nameOfFile) : 
+	           Ghost(posX,posY,speed,nameOfFile)
 {
 	this->pacMan = true;
 	this->speed = 0.12f;
