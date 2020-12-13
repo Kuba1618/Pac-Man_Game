@@ -21,8 +21,6 @@ public:
 	
 	Object(float posX = (50.0F), float posY = (50.0F),String nameOfImage = "pacManIcon.png");
 	~Object();
-	int getPosX();
-	int getPosY();
 	Texture getTexture();
 	void setTexture(String nameOfImage);
 };
