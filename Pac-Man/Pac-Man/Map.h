@@ -16,6 +16,7 @@ public:
 	Map();
 	void fillIsWall();
 	void showWall();
+	void drawFood(int x, int y);
 	void drawBrick(int x, int y);
 	void loadMap();
 	void displayMap(RenderWindow *window);

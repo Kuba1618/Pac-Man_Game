@@ -4,12 +4,14 @@
 
 using namespace std;
 
-Food::Food(int howMany,float posX, float posY,String nameOfImage) : Object(posX, posY, nameOfImage)
+Food::Food(float posX, float posY,String nameOfImage) : Object(posX, posY, nameOfImage)
 {
-	this->howManyFood = howMany;
-	this->setTexture(nameOfImage);
+	howManyFood++;
 }
-Food::~Food(){}
+Food::~Food()
+{
+	eat();
+}
 
 void Food::eat()
 {

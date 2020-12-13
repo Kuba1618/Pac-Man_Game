@@ -67,7 +67,6 @@ void Engine::movePacMan(Map *map,Ghost *pacMan,Sprite *player)
 		{
 			pacMan->setTexture("pacManIconUp.png");
 			player->setTexture(pacMan->texture);
-			//player->setRotation(-90.0f);
 			player->move(0.00f, -(pacMan->speed));
 		}
 		if (Keyboard::isKeyPressed(Keyboard::Key::Down))
@@ -117,11 +116,11 @@ void Engine::display(RenderWindow *window)
 	Ghost *ghost = new Ghost();
 	Ghost *ghost2 = new Ghost((220.0f),(120.0f),0.03f,"blueGhost.png");
 	PacMan *pacMan = new PacMan((300.0f),(360.0f),0.06f,"pacManIcon.png");
-	Food *food1 = new Food(5, 50.0f, 80.0f,"food.png");
+	/*Food *food1 = new Food(5, 50.0f, 80.0f,"food.png");
 	Food *food2 = new Food(5, 50.0f, 110.0f,"food.png");
 	Food *food3 = new Food(5, 50.0f, 140.0f,"food.png");
 	Food *food4 = new Food(5, 50.0f, 170.0f,"food.png");
-	Food *food5 = new Food();
+	Food *food5 = new Food();*/
 
 	
 	Map *map = new Map();
@@ -139,11 +138,11 @@ void Engine::display(RenderWindow *window)
 		}		
 		window->clear(Color::Black);
 		map->displayMap(window);
-		window->draw(food1->imageObject);
+		/*window->draw(food1->imageObject);
 		window->draw(food2->imageObject);
 		window->draw(food3->imageObject);
 		window->draw(food4->imageObject);
-		window->draw(food5->imageObject);
+		window->draw(food5->imageObject);*/
 		window->draw(pacMan->imageObject);
 		movePacMan(map,pacMan,&(pacMan->imageObject));
 		window->draw(ghost->imageObject);
