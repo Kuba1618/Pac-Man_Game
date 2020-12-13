@@ -17,6 +17,7 @@ public:
 	Texture wall;
 	Sprite kafelek[22][16];
 	Map();
+	void drawBrick(int x, int y);
 	void loadMap();
 };
 #endif
