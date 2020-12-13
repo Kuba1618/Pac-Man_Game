@@ -5,7 +5,7 @@
 using namespace std;
 using namespace sf;
 
-Ghost::Ghost(float posX, float posY,float speed,String nameOfFile) : Object(30,30,posX,posY,nameOfFile)
+Ghost::Ghost(float posX, float posY,float speed,String nameOfFile) : Object(posX,posY,nameOfFile)
 {
 	this->posX = posX;
 	this->posY = posY;

@@ -4,7 +4,7 @@
 
 using namespace std;
 
-Food::Food(int howMany,float posX, float posY,String nameOfImage) : Object(30, 30, posX, posY, nameOfImage)
+Food::Food(int howMany,float posX, float posY,String nameOfImage) : Object(posX, posY, nameOfImage)
 {
 	this->howManyFood = howMany;
 	this->setTexture(nameOfImage);

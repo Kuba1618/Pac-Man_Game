@@ -19,7 +19,7 @@ public:
 	bool collision;
 
 	
-	Object(int width = 30 , int height = 30, float posX = (50.0F), float posY = (50.0F),String nameOfImage = "pacManIcon.png");
+	Object(float posX = (50.0F), float posY = (50.0F),String nameOfImage = "pacManIcon.png");
 	~Object();
 	int getPosX();
 	int getPosY();

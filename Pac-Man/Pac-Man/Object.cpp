@@ -6,10 +6,8 @@
 using namespace std;
 using namespace sf;
 
-Object::Object(int width, int height, float posX, float posY, String nameOfImage)
+Object::Object(float posX, float posY, String nameOfImage)
 {
-	this->width = width;
-	this->height = height;
 	this->posX = posX;
 	this->posY = posY;
 	setTexture(nameOfImage);
@@ -37,6 +35,8 @@ void Object::setTexture(String nameOfImage)
 	imageObject.setTexture(this->texture);
 	if (Object::startOfGame)
 	{
+		this->width = imageObject.getTexture()->getSize().x;
+		this->height = imageObject.getTexture()->getSize().y;
 		imageObject.setPosition(posX, posY);
 		startOfGame = false;
 	}

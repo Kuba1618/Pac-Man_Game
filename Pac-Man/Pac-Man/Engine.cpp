@@ -150,6 +150,7 @@ void Engine::display(RenderWindow *window)
 		moveGhost(&ghost2->imageObject,ghost2,2);
 		window->display();
 	}
+	system("pause");
 }
 
 void Engine::startGame()
