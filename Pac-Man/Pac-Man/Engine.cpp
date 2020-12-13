@@ -136,9 +136,9 @@ void Engine::display(RenderWindow *window)
 				window->close();
 		}		
 		window->clear(Color::Black);
-		for (int y = 0; y < (map->y_kafli) - 1; y++)
+		for (int y = 0; y < (map->y_kafli); y++)
 		{
-			for (int x = 0; x < (map->x_kafli) - 1; x++)
+			for (int x = 0; x < (map->x_kafli); x++)
 			{
 				window->draw(map->kafelek[x][y]);
 			}
@@ -160,9 +160,8 @@ void Engine::display(RenderWindow *window)
 
 void Engine::startGame()
 {
-	RenderWindow window(VideoMode(640, 460), "Pac-Man");
+	RenderWindow window(VideoMode(660, 480), "Pac-Man");
 	display(&window);
-
 }
 
 void Engine::endGame()

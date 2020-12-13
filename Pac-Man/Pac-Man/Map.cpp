@@ -15,11 +15,11 @@ void Map::drawBrick(int x,int y)
 
 void Map::loadMap()
 {
-	for (int y = 0; y <= (this->y_kafli) - 1; y++)
+	for (int y = 0; y < (this->y_kafli) ; y++)
 	{
-		for (int x = 0; x <= (this->x_kafli) - 1; x++)
+		for (int x = 0; x < (this->x_kafli) ; x++)
 		{
-			if (x == 0 || y == 0 || x == ((this->x_kafli) - 2) || y == ((this->y_kafli) - 2))
+			if (x == 0 || y == 0 || x == ((this->x_kafli) - 1) || y == ((this->y_kafli) - 1))
 			{
 				drawBrick(x,y);
 			}
