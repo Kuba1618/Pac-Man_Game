@@ -15,15 +15,25 @@ void Map::drawBrick(int x,int y)
 
 void Map::loadMap()
 {
-	for (int y = 0; y < (this->y_kafli) ; y++)
+	for (int y = 0; y < (this->y_titles) ; y++)
 	{
-		for (int x = 0; x < (this->x_kafli) ; x++)
+		for (int x = 0; x < (this->x_titles) ; x++)
 		{
-			if (x == 0 || y == 0 || x == ((this->x_kafli) - 1) || y == ((this->y_kafli) - 1))
+			if (x == 0 || y == 0 || x == ((this->x_titles) - 1) || y == ((this->y_titles) - 1))
 			{
 				drawBrick(x,y);
 			}
 		}
 	}
+}
 
+void Map::displayMap(RenderWindow *window)
+{
+	for (int y = 0; y < (this->y_titles); y++)
+	{
+		for (int x = 0; x < (this->x_titles); x++)
+		{
+			window->draw(this->kafelek[x][y]);
+		}
+	}
 }

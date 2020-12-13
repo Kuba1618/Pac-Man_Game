@@ -136,13 +136,7 @@ void Engine::display(RenderWindow *window)
 				window->close();
 		}		
 		window->clear(Color::Black);
-		for (int y = 0; y < (map->y_kafli); y++)
-		{
-			for (int x = 0; x < (map->x_kafli); x++)
-			{
-				window->draw(map->kafelek[x][y]);
-			}
-		}
+		map->displayMap(window);
 		window->draw(food1->imageObject);
 		window->draw(food2->imageObject);
 		window->draw(food3->imageObject);
