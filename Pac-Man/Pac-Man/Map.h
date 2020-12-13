@@ -9,8 +9,8 @@ public:
 	const int x_tiles = 22;
 	const int y_tiles = 16;
 	bool isWall[22][16];
-	const int tile_width = 30;
-	const int tile_height = 30; 
+	float tile_width = 30.0f;
+	float tile_height = 30.0f; 
 
 	String nameOfImage;
 	Texture wall;

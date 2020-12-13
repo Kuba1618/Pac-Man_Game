@@ -8,7 +8,7 @@ Map::Map()
 
 void Map::drawBrick(int x,int y)
 {
-	this->tiles[x][y].setPosition((float)(x * (this->tile_width)), (float)(y * (this->tile_height)));
+	this->tiles[x][y].setPosition((float)x * (this->tile_width), (float)y * (this->tile_height));
 	this->tiles[x][y].setTexture(this->wall);
 	this->isWall[x][y] = true;
 }
