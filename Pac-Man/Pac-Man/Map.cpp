@@ -1,16 +1,36 @@
 #include "Map.h";
+#include "Brick.h";
+#include <iostream>;
 
-Map::Map()
+using namespace std;
+Map::Map(){}
+
+void Map::fillIsWall()
 {
-	this->nameOfImage = "../../Graphics/brick2.jpg";
-	this->wall.loadFromFile(this->nameOfImage);
+	for (int i = 0; i<22; i++)
+	{
+		for (int j = 0; j < 16; j++)
+		{
+			isWall[i][j] = 0;
+		}	
+	}
+}
+void Map::showWall()
+{
+	for (int i = 0; i<22; i++)
+	{
+		for (int j = 0; j<16; j++)
+			cout << isWall[i][j] << "   ";
+
+		cout << endl;
+	}
 }
 
 void Map::drawBrick(int x,int y)
 {
-	this->tiles[x][y].setPosition((float)x * (this->tile_width), (float)y * (this->tile_height));
-	this->tiles[x][y].setTexture(this->wall);
-	this->isWall[x][y] = true;
+	Brick *brick = new Brick((float)x * (this->tile_width), (float)y * (this->tile_height),"brick2.jpg");
+	tiles[x][y] = brick->imageObject;
+	isWall[x][y] = 1;
 }
 
 void Map::loadMap()

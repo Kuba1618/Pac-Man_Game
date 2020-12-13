@@ -125,8 +125,10 @@ void Engine::display(RenderWindow *window)
 
 	
 	Map *map = new Map();
+	map->fillIsWall();
 	map->loadMap();
-
+	
+	
 	while(window->isOpen() && isRunning)
 	{
 		Event event;

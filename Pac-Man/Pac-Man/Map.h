@@ -12,10 +12,10 @@ public:
 	float tile_width = 30.0f;
 	float tile_height = 30.0f; 
 
-	String nameOfImage;
-	Texture wall;
 	Sprite tiles[22][16];
 	Map();
+	void fillIsWall();
+	void showWall();
 	void drawBrick(int x, int y);
 	void loadMap();
 	void displayMap(RenderWindow *window);
