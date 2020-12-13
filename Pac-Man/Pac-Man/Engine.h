@@ -15,7 +15,6 @@ public:
 	bool isRunning = true;
 
 	void startGame();
-	void loadMap(Map *map);
 	void display(RenderWindow *window);
 	//void moveObject(Ghost *ghost, Map *map);
 	void moveGhost(Sprite *object,Ghost *ghost,int direction);

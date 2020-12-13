@@ -17,5 +17,6 @@ public:
 	Texture wall;
 	Sprite kafelek[22][16];
 	Map();
+	void loadMap();
 };
 #endif

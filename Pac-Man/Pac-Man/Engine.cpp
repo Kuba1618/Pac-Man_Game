@@ -112,22 +112,6 @@ void Engine::moveObject(Ghost *ghost, Map *map)
 	}
 }*/
 
-void Engine::loadMap(Map *map)
-{
-	for (int y = 0; y <= (map->y_kafli) -1; y++)
-	{
-		for (int x = 0; x <= (map->x_kafli) - 1; x++)
-		{
-			if (x == 0 || y == 0 || x == ((map->x_kafli)-2) || y == ((map->y_kafli) - 2))
-			{
-				map->kafelek[x][y].setPosition((float)(x * (map->tile_width)), (float)(y * (map->tile_height)));
-				map->kafelek[x][y].setTexture(map->wall);
-				map->isWall[x][y] = true;
-			}
-		}
-	}
-}
-
 void Engine::display(RenderWindow *window)
 {
 	Ghost *ghost = new Ghost();
@@ -140,15 +124,10 @@ void Engine::display(RenderWindow *window)
 	Food *food5 = new Food();
 
 	
-	/*food2->imageObject.setPosition();
-	food3->imageObject.setPosition();
-	food4->imageObject.setPosition();
-	food5->imageObject.setPosition();
-	*/
 	Map *map = new Map();
-	loadMap(map);
+	map->loadMap();
 
-	while (window->isOpen() && isRunning)
+	while(window->isOpen() && isRunning)
 	{
 		Event event;
 		while (window->pollEvent(event))
