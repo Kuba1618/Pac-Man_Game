@@ -15,16 +15,6 @@ Object::Object(float posX, float posY, String nameOfImage)
 
 Object::~Object() {}
 
-int Object::getPosX()
-{
-	return this->posX;
-}
-
-int Object::getPosY()
-{
-	return this->posY;
-}
-
 void Object::setTexture(String nameOfImage)
 {
 	if (!this->texture.loadFromFile("../../Graphics/" + nameOfImage))
