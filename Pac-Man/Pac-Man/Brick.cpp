@@ -1,6 +1,6 @@
 #include "Brick.h";
 
-Brick::Brick(String nameOfImage)
+Brick::Brick(float posX,float posY,String nameOfImage) : Object(posX,posY,nameOfImage)
 {
-	Object::setTexture(nameOfImage);
+	this->setTexture(nameOfImage);
 }
