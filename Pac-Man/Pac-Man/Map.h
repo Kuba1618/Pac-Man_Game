@@ -15,9 +15,11 @@ public:
 	Sprite tiles[22][16];
 	Map();
 	void fillKindOfTilesArray();
-	void showMapNonMovingObjects();
+	void showkindOfTiles();
 	void loadOneFood(int x, int y);
+	void loadAllFood();
 	void loadOneBrick(int x, int y);
+	void loadAllBricks();
 	void loadMap();
 	void displayMap(RenderWindow *window);
 };

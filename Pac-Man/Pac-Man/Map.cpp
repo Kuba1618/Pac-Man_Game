@@ -17,7 +17,7 @@ void Map::fillKindOfTilesArray()
 	}
 }
 
-void Map::showMapNonMovingObjects()
+void Map::showkindOfTiles()
 {
 	for (int y = 0; y < y_tiles; y++)
 	{
@@ -36,6 +36,20 @@ void Map::loadOneFood(int x, int y)
 	kindOfTiles[x][y] = 2;
 }
 
+void Map::loadAllFood()
+{
+	for (int y = 0; y < (this->y_tiles); y++)
+	{
+		for (int x = 0; x < (this->x_tiles); x++)
+		{
+			if (x == 10 && y > 1 && y < 8)
+			{
+				loadOneFood(x, y);
+			}
+		}
+	}
+}
+
 void Map::loadOneBrick(int x,int y)
 {
 	Brick *brick = new Brick(((float)x) * (this->tile_width), ((float)y) * (this->tile_height),"brick2.jpg");
@@ -43,22 +57,24 @@ void Map::loadOneBrick(int x,int y)
 	kindOfTiles[x][y] = 1;
 }
 
-void Map::loadMap()
+void Map::loadAllBricks()
 {
-	for (int y = 0; y < (this->y_tiles) ; y++)
+	for (int y = 0; y < (this->y_tiles); y++)
 	{
-		for (int x = 0; x < (this->x_tiles) ; x++)
+		for (int x = 0; x < (this->x_tiles); x++)
 		{
 			if (x == 0 || y == 0 || x == ((this->x_tiles) - 1) || y == ((this->y_tiles) - 1))
 			{
-				loadOneBrick(x,y);
-			}
-			if (x == 10  &&  y > 1  &&  y < 8)
-			{
-				loadOneFood(x, y);
+				loadOneBrick(x, y);
 			}
 		}
 	}
+}
+
+void Map::loadMap()
+{
+	loadAllFood();
+	loadAllBricks();
 }
 
 void Map::displayMap(RenderWindow *window)

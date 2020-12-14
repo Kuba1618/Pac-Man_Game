@@ -140,7 +140,7 @@ void Engine::display(RenderWindow *window)
 		moveGhost(&ghost2->imageObject,ghost2,2);
 		window->display();
 	}
-	//map->showMapNonMovingObjects();
+	//map->showkindOfTiles();
 	system("pause");
 }
 
