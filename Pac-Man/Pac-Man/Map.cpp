@@ -16,12 +16,12 @@ void Map::fillIsWall()
 		}	
 	}
 }
-void Map::showWall()
+void Map::showMapNonMovingObjects()
 {
-	for (int i = 0; i<22; i++)
+	for (int y = 0; y<22; y++)
 	{
-		for (int j = 0; j<16; j++)
-			cout << mapNonMovingObjects[i][j] << "   ";
+		for (int x = 0; x<16; x++)
+			cout << mapNonMovingObjects[x][y] << "   ";
 
 		cout << endl;
 	}
@@ -31,7 +31,7 @@ void Map::drawFood(int x, int y)
 {
 	Food *food = new Food((float)x * (this->tile_width), (float)y * (this->tile_height), "food.png");
 	tiles[x][y] = food->imageObject;
-	mapNonMovingObjects[x][y] = 1;
+	mapNonMovingObjects[x][y] = 2;
 }
 
 void Map::drawBrick(int x,int y)
