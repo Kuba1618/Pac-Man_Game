@@ -118,7 +118,7 @@ void Engine::display(RenderWindow *window)
 	PacMan *pacMan = new PacMan((300.0f),(360.0f),0.06f,"pacManIcon.png");
 		
 	Map *map = new Map();
-	map->fillMapNonMovingObjects();
+	map->fillKindOfTilesArray();
 	map->loadMap();
 	
 	
