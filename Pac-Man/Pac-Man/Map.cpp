@@ -8,21 +8,23 @@ Map::Map(){}
 
 void Map::fillIsWall()
 {
-	for (int i = 0; i<22; i++)
+	for (int y = 0; y < y_tiles; y++)
 	{
-		for (int j = 0; j < 16; j++)
+		for (int x = 0; x < x_tiles; x++)
 		{
-			mapNonMovingObjects[i][j] = 0;
+			mapNonMovingObjects[x][y] = 0;
 		}	
 	}
 }
+
 void Map::showMapNonMovingObjects()
 {
-	for (int y = 0; y<22; y++)
+	for (int y = 0; y < y_tiles; y++)
 	{
-		for (int x = 0; x<16; x++)
+		for (int x = 0; x < x_tiles; x++)
+		{
 			cout << mapNonMovingObjects[x][y] << "   ";
-
+		}
 		cout << endl;
 	}
 }
@@ -51,7 +53,7 @@ void Map::loadMap()
 			{
 				drawBrick(x,y);
 			}
-			if (x ==10 && y > 1 &&y < 8)
+			if (x == 10  &&  y > 1  &&  y < 8)
 			{
 				drawFood(x, y);
 			}
