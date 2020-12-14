@@ -6,7 +6,7 @@
 using namespace std;
 Map::Map(){}
 
-void Map::fillIsWall()
+void Map::fillMapNonMovingObjects()
 {
 	for (int y = 0; y < y_tiles; y++)
 	{
@@ -31,14 +31,14 @@ void Map::showMapNonMovingObjects()
 
 void Map::drawFood(int x, int y)
 {
-	Food *food = new Food((float)x * (this->tile_width), (float)y * (this->tile_height), "food.png");
+	Food *food = new Food(((float)x) * (this->tile_width), ((float)y) * (this->tile_height), "food.png");
 	tiles[x][y] = food->imageObject;
 	mapNonMovingObjects[x][y] = 2;
 }
 
 void Map::drawBrick(int x,int y)
 {
-	Brick *brick = new Brick((float)x * (this->tile_width), (float)y * (this->tile_height),"brick2.jpg");
+	Brick *brick = new Brick(((float)x) * (this->tile_width), ((float)y) * (this->tile_height),"brick2.jpg");
 	tiles[x][y] = brick->imageObject;
 	mapNonMovingObjects[x][y] = 1;
 }

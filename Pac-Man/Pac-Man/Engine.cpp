@@ -118,7 +118,7 @@ void Engine::display(RenderWindow *window)
 	PacMan *pacMan = new PacMan((300.0f),(360.0f),0.06f,"pacManIcon.png");
 		
 	Map *map = new Map();
-	map->fillIsWall();
+	map->fillMapNonMovingObjects();
 	map->loadMap();
 	
 	
@@ -140,13 +140,13 @@ void Engine::display(RenderWindow *window)
 		moveGhost(&ghost2->imageObject,ghost2,2);
 		window->display();
 	}
-	map->showMapNonMovingObjects();
+	//map->showMapNonMovingObjects();
 	system("pause");
 }
 
 void Engine::startGame()
 {
-	RenderWindow window(VideoMode(660, 480), "Pac-Man");
+	RenderWindow window(VideoMode(880, 640), "Pac-Man");
 	display(&window);
 }
 
