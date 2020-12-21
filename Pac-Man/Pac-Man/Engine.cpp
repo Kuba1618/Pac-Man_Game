@@ -138,6 +138,10 @@ void Engine::display(RenderWindow *window)
 		moveGhost(&ghost->imageObject,ghost,1);
 		window->draw(ghost2->imageObject);
 		moveGhost(&ghost2->imageObject,ghost2,2);
+		if (pacMan->imageObject.getGlobalBounds().intersects(ghost2->imageObject.getGlobalBounds()))
+		{
+			cout << "Kolizja!!!\n";
+		}
 		window->display();
 	}
 	//map->showkindOfTiles();
