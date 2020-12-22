@@ -1,7 +1,6 @@
 #ifndef OBJECT_H
 #define OBJECT_H
 #include <SFML\Graphics.hpp>
-#include "Map.h";
 
 using namespace sf;
 

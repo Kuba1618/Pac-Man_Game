@@ -1,6 +1,8 @@
 #include "Map.h";
 #include "Brick.h";
 #include "Food.h";
+
+#include "PacMan.h";
 #include <iostream>;
 
 using namespace std;
@@ -29,6 +31,27 @@ void Map::showkindOfTiles()
 	}
 }
 
+void Map::loadOneBrick(int x, int y)
+{
+	Brick *brick = new Brick(((float)x) * (this->tile_width), ((float)y) * (this->tile_height), "brick2.jpg");
+	tiles[x][y] = brick->imageObject;
+	kindOfTiles[x][y] = 1;
+}
+
+void Map::loadAllBricks()
+{
+	for (int y = 0; y < (this->y_tiles); y++)
+	{
+		for (int x = 0; x < (this->x_tiles); x++)
+		{
+			if (x == 0 || y == 0 || x == ((this->x_tiles) - 1) || y == ((this->y_tiles) - 1))
+			{
+				loadOneBrick(x, y);
+			}
+		}
+	}
+}
+
 void Map::loadOneFood(int x, int y)
 {
 	Food *food = new Food(((float)x) * (this->tile_width), ((float)y) * (this->tile_height), "food.png");
@@ -50,22 +73,26 @@ void Map::loadAllFood()
 	}
 }
 
-void Map::loadOneBrick(int x,int y)
+void Map::loadGhost(int x,int y)
 {
-	Brick *brick = new Brick(((float)x) * (this->tile_width), ((float)y) * (this->tile_height),"brick2.jpg");
-	tiles[x][y] = brick->imageObject;
-	kindOfTiles[x][y] = 1;
+	/*Ghost *ghost2 = new Ghost(((float)x) * (this->tile_width), ((float)y) * (this->tile_height), 0.03f, "blueGhost.png");
+	tiles[x][y] = ghost2->imageObject;
+	kindOfTiles[x][y] = 3;*/
+	ghosts[counter] = new Ghost(((float)x) * (this->tile_width), ((float)y) * (this->tile_height), 0.03f, "blueGhost.png");
+	tiles[x][y] = ghosts[counter]->imageObject;
+	kindOfTiles[x][y] = 3;
+	counter++;
 }
 
-void Map::loadAllBricks()
+void Map::loadAllGhosts()
 {
 	for (int y = 0; y < (this->y_tiles); y++)
 	{
 		for (int x = 0; x < (this->x_tiles); x++)
 		{
-			if (x == 0 || y == 0 || x == ((this->x_tiles) - 1) || y == ((this->y_tiles) - 1))
+			if ((x == 10 && y == 8 ) || (x == 12 && y == 14))
 			{
-				loadOneBrick(x, y);
+				loadGhost(x, y);
 			}
 		}
 	}
@@ -73,8 +100,11 @@ void Map::loadAllBricks()
 
 void Map::loadMap()
 {
+	//PacMan *pacMan = new PacMan((300.0f),(360.0f), 0.06f, "pacManIcon.png");
 	loadAllFood();
 	loadAllBricks();
+	loadAllGhosts();
+
 }
 
 void Map::displayMap(RenderWindow *window)

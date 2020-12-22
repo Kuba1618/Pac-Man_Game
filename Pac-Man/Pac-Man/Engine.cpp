@@ -115,7 +115,7 @@ void Engine::display(RenderWindow *window)
 {
 	Ghost *ghost = new Ghost();
 	Ghost *ghost2 = new Ghost((220.0f),(120.0f),0.03f,"blueGhost.png");
-	PacMan *pacMan = new PacMan((300.0f),(360.0f),0.06f,"pacManIcon.png");
+	PacMan *pacMan = new PacMan((300.0f), (360.0f), 0.06f, "pacManIcon.png");
 		
 	Map *map = new Map();
 	map->fillKindOfTilesArray();
