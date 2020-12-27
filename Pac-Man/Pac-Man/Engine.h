@@ -24,6 +24,7 @@ public:
 	void collisionPacManGhost(PacMan *object1, Ghost *object2);
 	void collisionPacManFood(PacMan *object1, Food *object2);
 	void collisionPacManBricks(Ghost *object1, Brick *object2);
+	void collisionGhostBricks(Ghost *object1, Brick *object2);
 	void endGame();
 };
 #endif

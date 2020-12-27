@@ -15,22 +15,29 @@ Ghost::~Ghost()
 
 void Ghost::moveGhost(int direction)
 {
-	switch (direction)
+	if (!collision)
 	{
-	case 1:
-	{
-		this->imageObject.move(this->speed, 0.00f);
-		break;
+		switch (direction)
+		{
+		case 1:
+		{
+			this->imageObject.move(this->speed, 0.00f);
+			break;
+		}
+		case 2:
+		{
+			this->imageObject.move(-(this->speed), 0.00f);
+			break;
+		}
+		default:
+		{
+			this->imageObject.move(this->speed, this->speed);
+		}
+		}
 	}
-	case 2:
+	if (collision)
 	{
-		this->imageObject.move(-(this->speed), 0.00f);
-		break;
-	}
-	default:
-	{
-		this->imageObject.move(this->speed, this->speed);
-	}
+
 	}
 
 }

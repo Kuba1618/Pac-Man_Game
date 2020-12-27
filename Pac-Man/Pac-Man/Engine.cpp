@@ -63,6 +63,14 @@ void Engine::collisionPacManBricks(Ghost *pacMan1, Brick *brick1)
 	}
 }
 
+void Engine::collisionGhostBricks(Ghost *ghost, Brick *brick1)
+{
+	if (ghost->imageObject.getGlobalBounds().intersects(brick1->imageObject.getGlobalBounds()))
+	{
+		ghost->collision = true;
+	}
+}
+
 void Engine::display(RenderWindow *window)
 {
 	Ghost *ghost = new Ghost();
@@ -102,6 +110,13 @@ void Engine::display(RenderWindow *window)
 		for (Brick *bk : map->allBricks)
 		{
 			collisionPacManBricks(pacMan, bk);
+		}
+		for (Ghost *gh : map->allGhosts)
+		{
+			for (Brick *bk : map->allBricks)
+			{
+				collisionGhostBricks(gh,bk);
+			}
 		}
 		window->display();
 	}
