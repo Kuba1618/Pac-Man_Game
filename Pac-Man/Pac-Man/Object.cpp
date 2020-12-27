@@ -1,10 +1,4 @@
-#include <SFML\Graphics.hpp>
-#include <SFML\System.hpp>
 #include "Object.h";
-#include <iostream>
-
-using namespace std;
-using namespace sf;
 
 Object::Object(float posX, float posY, String nameOfImage)
 {

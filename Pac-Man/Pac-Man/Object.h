@@ -1,8 +1,12 @@
 #ifndef OBJECT_H
 #define OBJECT_H
+
 #include <SFML\Graphics.hpp>
+#include <SFML\System.hpp>
+#include <iostream>
 
 using namespace sf;
+using namespace std;
 
 class Object
 {

@@ -1,82 +1,9 @@
 #include <iostream>
 #include <SFML\Graphics.hpp>
 #include "Engine.h";
-#include "Ghost.h";
-#include "Brick.h";
-#include "PacMan.h";
-#include "Map.h";
-#include "Food.h";
 
 using namespace std;
 using namespace sf;
-
-
-void Engine::moveGhost(Sprite *player,Ghost *ghost,int direction)
-{
-
-	switch (direction)
-	{
-	case 1:
-	{
-		player->move(ghost->speed, 0.00f);
-		break;
-	}
-	case 2:
-	{
-		player->move(-(ghost->speed), 0.00f);
-		break;
-	}
-	default:
-	{
-		player->move(ghost->speed, ghost->speed);
-	}
-	}
-}
-
-void Engine::movePacMan(Map *map,Ghost *pacMan,Sprite *player)
-{
-	/*for (int y = 0; y <= (map->y_kafli) - 2; y++)
-	{
-		for (int x = 0; x <= (map->x_kafli) - 2; x++)
-		{
-			if (pacMan->imageObject.getPosition().x + (map->tile_width) == map->kafelek[x][y].getPosition().x
-				&& pacMan->imageObject.getPosition().y + (map->tile_height) == (map->kafelek[x][y]).getPosition().y)
-				//&& map->isWall[x][y] == 1)
-			{
-				pacMan->collision = true;
-			}
-		}
-	}*/
-	
-	if ((pacMan->collision) == false)
-	{
-		if (Keyboard::isKeyPressed(Keyboard::Key::Left))
-		{
-			pacMan->setTexture("pacManIconLeft.png");
-			player->setTexture(pacMan->texture);
-			player->move(-(pacMan->speed), 0.00f);
-		}
-		if (Keyboard::isKeyPressed(Keyboard::Key::Right))
-		{
-			pacMan->setTexture("pacManIcon.png");
-			player->setTexture(pacMan->texture);
-			player->setRotation(0.0f);
-			player->move((pacMan->speed), 0.00f);
-		}
-		if (Keyboard::isKeyPressed(Keyboard::Key::Up))
-		{
-			pacMan->setTexture("pacManIconUp.png");
-			player->setTexture(pacMan->texture);
-			player->move(0.00f, -(pacMan->speed));
-		}
-		if (Keyboard::isKeyPressed(Keyboard::Key::Down))
-		{
-			pacMan->setTexture("pacManIconDown.png");
-			player->setTexture(pacMan->texture);
-			player->move(0.00f, (pacMan->speed));
-		}
-	}
-}
 
 /*
 void Engine::moveObject(Ghost *ghost, Map *map)
@@ -110,6 +37,29 @@ void Engine::moveObject(Ghost *ghost, Map *map)
 
 	}
 }*/
+void Engine::collision(Ghost *ghost1, Ghost *ghost2)
+{
+	if (ghost1->imageObject.getGlobalBounds().intersects(ghost2->imageObject.getGlobalBounds()))
+	{
+		cout << "Kolizja!!!\n";
+	}
+}
+
+void Engine::collisionOfFood(Ghost *object1, Food *object2)
+{
+	if (object1->imageObject.getGlobalBounds().intersects(object2->imageObject.getGlobalBounds()))
+	{
+		cout << "Kolizja!!!\n";
+	}
+}
+
+void Engine::collisionOfBricks(Ghost *object1, Brick *object2)
+{
+	if (object1->imageObject.getGlobalBounds().intersects(object2->imageObject.getGlobalBounds()))
+	{
+		cout << "Kolizja!!!\n";
+	}
+}
 
 void Engine::display(RenderWindow *window)
 {
@@ -120,28 +70,45 @@ void Engine::display(RenderWindow *window)
 	Map *map = new Map();
 	map->fillKindOfTilesArray();
 	map->loadMap();
+	map->allGhosts.push_back(ghost);
+	map->allGhosts.push_back(ghost2);
 	
+	vector<int>::iterator pos;
 	
-	while(window->isOpen() && isRunning)
+	while (window->isOpen() && isRunning)
 	{
 		Event event;
 		while (window->pollEvent(event))
 		{
 			if (event.type == Event::Closed)
 				window->close();
-		}		
+		}
 		window->clear(Color::Black);
 		map->displayMap(window);
-		window->draw(pacMan->imageObject);
-		movePacMan(map,pacMan,&(pacMan->imageObject));
+		//map->moveGhosts();
 		window->draw(ghost->imageObject);
-		moveGhost(&ghost->imageObject,ghost,1);
+		ghost->moveGhost(1);
 		window->draw(ghost2->imageObject);
-		moveGhost(&ghost2->imageObject,ghost2,2);
-		if (pacMan->imageObject.getGlobalBounds().intersects(ghost2->imageObject.getGlobalBounds()))
+		ghost2->moveGhost(2);
+		window->draw(pacMan->imageObject);
+		pacMan->movePacMan();
+		//collision(pacMan, ghost2); //DO NOT DELETE - until the code below will be ready to go on every ghost
+		for (Ghost *gh : map->allGhosts)
 		{
-			cout << "Kolizja!!!\n";
+			collision(pacMan, gh);
 		}
+		for (Food *fd : map->allFood)
+		{
+			collisionOfFood(pacMan, fd);
+		}
+		for (Brick *bk : map->allBricks)
+		{
+			collisionOfBricks(pacMan, bk);
+		}
+		/*for (Ghost *g : map->allGhosts)
+		{
+			g->moveGhost(2);
+		}*/
 		window->display();
 	}
 	//map->showkindOfTiles();

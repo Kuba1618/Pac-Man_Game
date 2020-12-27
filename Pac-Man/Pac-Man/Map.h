@@ -1,9 +1,15 @@
 #ifndef MAP_H
 #define MAP_H
+
 #include <SFML\Graphics.hpp>
+#include "Brick.h";
+#include "Food.h";
 #include "Ghost.h";
+#include <queue>;
+#include <iostream>;
 
 using namespace sf;
+using namespace std;
 
 class Map
 {
@@ -15,7 +21,11 @@ public:
 	float tile_height = 40.0f; \
 	int counter = 0;
 	
-	Ghost *ghosts[2];
+	vector<Brick*> allBricks;
+	vector<Food*> allFood;
+	vector<Ghost*> allGhosts;
+	
+
 	Sprite tiles[22][16];
 	Map();
 	void fillKindOfTilesArray();
@@ -28,5 +38,6 @@ public:
 	void loadAllGhosts();
 	void loadMap();
 	void displayMap(RenderWindow *window);
+	void moveGhosts();
 };
 #endif

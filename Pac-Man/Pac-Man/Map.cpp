@@ -1,11 +1,5 @@
 #include "Map.h";
-#include "Brick.h";
-#include "Food.h";
 
-#include "PacMan.h";
-#include <iostream>;
-
-using namespace std;
 Map::Map(){}
 
 void Map::fillKindOfTilesArray()
@@ -36,6 +30,7 @@ void Map::loadOneBrick(int x, int y)
 	Brick *brick = new Brick(((float)x) * (this->tile_width), ((float)y) * (this->tile_height), "brick2.jpg");
 	tiles[x][y] = brick->imageObject;
 	kindOfTiles[x][y] = 1;
+	allBricks.push_back(brick);
 }
 
 void Map::loadAllBricks()
@@ -57,6 +52,7 @@ void Map::loadOneFood(int x, int y)
 	Food *food = new Food(((float)x) * (this->tile_width), ((float)y) * (this->tile_height), "food.png");
 	tiles[x][y] = food->imageObject;
 	kindOfTiles[x][y] = 2;
+	allFood.push_back(food);
 }
 
 void Map::loadAllFood()
@@ -75,13 +71,10 @@ void Map::loadAllFood()
 
 void Map::loadGhost(int x,int y)
 {
-	/*Ghost *ghost2 = new Ghost(((float)x) * (this->tile_width), ((float)y) * (this->tile_height), 0.03f, "blueGhost.png");
-	tiles[x][y] = ghost2->imageObject;
-	kindOfTiles[x][y] = 3;*/
-	ghosts[counter] = new Ghost(((float)x) * (this->tile_width), ((float)y) * (this->tile_height), 0.03f, "blueGhost.png");
-	tiles[x][y] = ghosts[counter]->imageObject;
+	Ghost *ghost = new Ghost(((float)x) * (this->tile_width), ((float)y) * (this->tile_height), 0.03f, "blueGhost.png");
+	tiles[x][y] = ghost->imageObject;
 	kindOfTiles[x][y] = 3;
-	counter++;
+	allGhosts.push_back(ghost);
 }
 
 void Map::loadAllGhosts()
@@ -100,11 +93,9 @@ void Map::loadAllGhosts()
 
 void Map::loadMap()
 {
-	//PacMan *pacMan = new PacMan((300.0f),(360.0f), 0.06f, "pacManIcon.png");
 	loadAllFood();
 	loadAllBricks();
 	loadAllGhosts();
-
 }
 
 void Map::displayMap(RenderWindow *window)
@@ -116,4 +107,12 @@ void Map::displayMap(RenderWindow *window)
 			window->draw(this->tiles[x][y]);
 		}
 	}
+}
+
+void Map::moveGhosts()
+{
+	/*for (Ghost *ghost : allGhosts)
+	{
+		ghost->moveGhost(2);
+	}*/
 }

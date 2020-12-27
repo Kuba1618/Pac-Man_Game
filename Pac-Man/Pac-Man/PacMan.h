@@ -9,6 +9,7 @@ private:
 public:
 	PacMan(float posX = (50.0f), float posY = (60.0f),float speed = 0.03f,String nameOfFile = "pacManIcon.jpg");
 	~PacMan();
+	void movePacMan();
 	void killPacMan();
 };
 
