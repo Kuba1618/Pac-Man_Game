@@ -19,8 +19,6 @@ public:
 	bool startOfGame = true;
 	Texture texture;
 	Sprite imageObject;
-	bool collision;
-
 	
 	Object(float posX = (50.0F), float posY = (50.0F),String nameOfImage = "pacManIcon.png");
 	~Object();

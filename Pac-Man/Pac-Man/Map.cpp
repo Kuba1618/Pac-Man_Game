@@ -95,7 +95,7 @@ void Map::loadMap()
 {
 	loadAllFood();
 	loadAllBricks();
-	loadAllGhosts();
+	//loadAllGhosts();
 }
 
 void Map::displayMap(RenderWindow *window)

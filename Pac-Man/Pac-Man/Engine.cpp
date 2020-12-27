@@ -37,27 +37,29 @@ void Engine::moveObject(Ghost *ghost, Map *map)
 
 	}
 }*/
-void Engine::collision(Ghost *ghost1, Ghost *ghost2)
+void Engine::collisionPacManGhost(PacMan *pacMan1, Ghost *ghost2)
 {
-	if (ghost1->imageObject.getGlobalBounds().intersects(ghost2->imageObject.getGlobalBounds()))
+	pacMan1->movePacMan();
+	if (pacMan1->imageObject.getGlobalBounds().intersects(ghost2->imageObject.getGlobalBounds()))
 	{
-		cout << "Kolizja!!!\n";
+		pacMan1->collision = true;
 	}
 }
 
-void Engine::collisionOfFood(Ghost *object1, Food *object2)
+void Engine::collisionPacManFood(PacMan *object1, Food *object2)
 {
 	if (object1->imageObject.getGlobalBounds().intersects(object2->imageObject.getGlobalBounds()))
 	{
-		cout << "Kolizja!!!\n";
+		cout << "Kolizja z jedzeniem!!!\n";
+	
 	}
 }
 
-void Engine::collisionOfBricks(Ghost *object1, Brick *object2)
+void Engine::collisionPacManBricks(Ghost *pacMan1, Brick *brick1)
 {
-	if (object1->imageObject.getGlobalBounds().intersects(object2->imageObject.getGlobalBounds()))
+	if (pacMan1->imageObject.getGlobalBounds().intersects(brick1->imageObject.getGlobalBounds()))
 	{
-		cout << "Kolizja!!!\n";
+		pacMan1->collision = true;
 	}
 }
 
@@ -73,8 +75,6 @@ void Engine::display(RenderWindow *window)
 	map->allGhosts.push_back(ghost);
 	map->allGhosts.push_back(ghost2);
 	
-	vector<int>::iterator pos;
-	
 	while (window->isOpen() && isRunning)
 	{
 		Event event;
@@ -85,30 +85,24 @@ void Engine::display(RenderWindow *window)
 		}
 		window->clear(Color::Black);
 		map->displayMap(window);
-		//map->moveGhosts();
 		window->draw(ghost->imageObject);
 		ghost->moveGhost(1);
 		window->draw(ghost2->imageObject);
 		ghost2->moveGhost(2);
 		window->draw(pacMan->imageObject);
-		pacMan->movePacMan();
-		//collision(pacMan, ghost2); //DO NOT DELETE - until the code below will be ready to go on every ghost
+		//pacMan->movePacMan();
 		for (Ghost *gh : map->allGhosts)
 		{
-			collision(pacMan, gh);
+			collisionPacManGhost(pacMan, gh);
 		}
 		for (Food *fd : map->allFood)
 		{
-			collisionOfFood(pacMan, fd);
+			collisionPacManFood(pacMan, fd);
 		}
 		for (Brick *bk : map->allBricks)
 		{
-			collisionOfBricks(pacMan, bk);
+			collisionPacManBricks(pacMan, bk);
 		}
-		/*for (Ghost *g : map->allGhosts)
-		{
-			g->moveGhost(2);
-		}*/
 		window->display();
 	}
 	//map->showkindOfTiles();

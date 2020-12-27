@@ -21,9 +21,9 @@ public:
 	void startGame();
 	void display(RenderWindow *window);
 	//void moveObject(Ghost *ghost, Map *map);
-	void collision(Ghost *object1, Ghost *object2);
-	void collisionOfFood(Ghost *object1, Food *object2);
-	void collisionOfBricks(Ghost *object1, Brick *object2);
+	void collisionPacManGhost(PacMan *object1, Ghost *object2);
+	void collisionPacManFood(PacMan *object1, Food *object2);
+	void collisionPacManBricks(Ghost *object1, Brick *object2);
 	void endGame();
 };
 #endif

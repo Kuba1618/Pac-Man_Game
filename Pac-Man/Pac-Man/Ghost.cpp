@@ -32,4 +32,5 @@ void Ghost::moveGhost(int direction)
 		this->imageObject.move(this->speed, this->speed);
 	}
 	}
+
 }
