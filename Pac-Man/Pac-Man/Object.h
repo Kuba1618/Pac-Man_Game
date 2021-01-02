@@ -1,9 +1,12 @@
 #ifndef OBJECT_H
 #define OBJECT_H
+
 #include <SFML\Graphics.hpp>
-#include "Map.h";
+#include <SFML\System.hpp>
+#include <iostream>
 
 using namespace sf;
+using namespace std;
 
 class Object
 {
@@ -16,8 +19,6 @@ public:
 	bool startOfGame = true;
 	Texture texture;
 	Sprite imageObject;
-	bool collision;
-
 	
 	Object(float posX = (50.0F), float posY = (50.0F),String nameOfImage = "pacManIcon.png");
 	~Object();
