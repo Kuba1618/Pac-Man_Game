@@ -37,21 +37,22 @@ void Engine::moveObject(Ghost *ghost, Map *map)
 
 	}
 }*/
-void Engine::collisionPacManGhost(PacMan *pacMan1, Ghost *ghost2)
+void Engine::collisionPacManGhost(PacMan *pacMan1, Ghost *ghost1)
 {
 	pacMan1->movePacMan();
-	if (pacMan1->imageObject.getGlobalBounds().intersects(ghost2->imageObject.getGlobalBounds()))
+	if (pacMan1->imageObject.getGlobalBounds().intersects(ghost1->imageObject.getGlobalBounds()))
 	{
 		pacMan1->collision = true;
 	}
 }
 
-void Engine::collisionPacManFood(PacMan *object1, Food *object2)
+void Engine::collisionPacManFood(PacMan *pacMan1, Food *food1,Map *map)
 {
-	if (object1->imageObject.getGlobalBounds().intersects(object2->imageObject.getGlobalBounds()))
+	if (pacMan1->imageObject.getGlobalBounds().intersects(food1->imageObject.getGlobalBounds()))
 	{
 		cout << "Kolizja z jedzeniem!!!\n";
-	
+		delete food1;
+		//food1 = NULL;
 	}
 }
 
@@ -63,11 +64,11 @@ void Engine::collisionPacManBricks(Ghost *pacMan1, Brick *brick1)
 	}
 }
 
-void Engine::collisionGhostBricks(Ghost *ghost, Brick *brick1)
+void Engine::collisionGhostBricks(Ghost *ghost1, Brick *brick1)
 {
-	if (ghost->imageObject.getGlobalBounds().intersects(brick1->imageObject.getGlobalBounds()))
+	if (ghost1->imageObject.getGlobalBounds().intersects(brick1->imageObject.getGlobalBounds()))
 	{
-		ghost->collision = true;
+		ghost1->collision = true;
 	}
 }
 
@@ -105,7 +106,7 @@ void Engine::display(RenderWindow *window)
 		}
 		for (Food *fd : map->allFood)
 		{
-			collisionPacManFood(pacMan, fd);
+			collisionPacManFood(pacMan, fd, map);
 		}
 		for (Brick *bk : map->allBricks)
 		{

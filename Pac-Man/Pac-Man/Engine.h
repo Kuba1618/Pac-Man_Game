@@ -22,7 +22,7 @@ public:
 	void display(RenderWindow *window);
 	//void moveObject(Ghost *ghost, Map *map);
 	void collisionPacManGhost(PacMan *object1, Ghost *object2);
-	void collisionPacManFood(PacMan *object1, Food *object2);
+	void collisionPacManFood(PacMan *object1, Food *object2,Map *map);
 	void collisionPacManBricks(Ghost *object1, Brick *object2);
 	void collisionGhostBricks(Ghost *object1, Brick *object2);
 	void endGame();
