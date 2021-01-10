@@ -5,38 +5,6 @@
 using namespace std;
 using namespace sf;
 
-/*
-void Engine::moveObject(Ghost *ghost, Map *map)
-{
-	bool kolizja = false;
-
-	if (Keyboard::isKeyPressed(Keyboard::D))
-	{
-		for (int y = 0; y <= (map->y_kafli) - 1; y++)
-		{
-			for (int x = 0; x <= (map->x_kafli) - 1; x++)
-			{
-				if (ghost->imageObject.getPosition().x + map->tile_width == map->kafelek[x][y].getPosition().x
-					&& ghost->imageObject.getPosition().y + map->tile_height == (map->kafelek[x][y]).getPosition().y
-					&& map->isWall[x][y] == 1)
-					kolizja = true;
-			}
-		}
-		if (kolizja != true)
-		{
-			if (ghost->pacMan)
-			{
-				movingPacMan();
-			}
-			else if (!ghost->pacMan)
-			{
-				movingGhost();
-			}
-			
-		}
-
-	}
-}*/
 void Engine::collisionPacManGhost(PacMan *pacMan1, Ghost *ghost1)
 {
 	pacMan1->movePacMan();
@@ -75,8 +43,8 @@ void Engine::collisionGhostBricks(Ghost *ghost1, Brick *brick1)
 
 void Engine::display(RenderWindow *window)
 {
-	Ghost *ghost = new Ghost();
-	Ghost *ghost2 = new Ghost((220.0f),(120.0f),0.03f,"blueGhost.png");
+	Ghost *ghost = new Ghost((120.0f), (200.0f), 0.03f, "orangeGhost.png", 1);
+	Ghost *ghost2 = new Ghost((220.0f),(120.0f),0.03f,"blueGhost.png",2);
 	PacMan *pacMan = new PacMan((300.0f), (360.0f), 0.06f, "pacManIcon.png");
 		
 	Map *map = new Map();
@@ -96,11 +64,10 @@ void Engine::display(RenderWindow *window)
 		window->clear(Color::Black);
 		map->displayMap(window);
 		window->draw(ghost->imageObject);
-		ghost->moveGhost(1);
+		ghost->moveGhost(ghost->currentDirection);
 		window->draw(ghost2->imageObject);
-		ghost2->moveGhost(2);
+		ghost2->moveGhost(ghost2->currentDirection);
 		window->draw(pacMan->imageObject);
-		//pacMan->movePacMan();
 		for (Ghost *gh : map->allGhosts)
 		{
 			collisionPacManGhost(pacMan, gh);

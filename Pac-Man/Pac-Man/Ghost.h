@@ -13,7 +13,8 @@ public:
 	bool pacMan;
 	float speed;
 	bool collision;
-	Ghost(float posX = (120.0F), float posY = (200.0F),float speed = 0.03f,String nameOfFile = "orangeGhost.png");
+	int currentDirection;
+	Ghost(float posX = (120.0F), float posY = (200.0F),float speed = 0.03f,String nameOfFile = "orangeGhost.png",int direction = 1);
 	~Ghost();
 	void moveGhost(int direction);
 };
