@@ -15,6 +15,7 @@ using namespace sf;
 
 class Engine
 {
+
 public:
 	bool isRunning = true;
 

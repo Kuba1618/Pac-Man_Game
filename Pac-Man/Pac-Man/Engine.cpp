@@ -51,8 +51,9 @@ void Engine::collisionPacManFood(PacMan *pacMan1, Food *food1,Map *map)
 	if (pacMan1->imageObject.getGlobalBounds().intersects(food1->imageObject.getGlobalBounds()))
 	{
 		cout << "Kolizja z jedzeniem!!!\n";
-		delete food1;
-		//food1 = NULL;
+		//Sprite black;
+		//cout<<"Zwroc x= "<<(int)food1->imageObject.getPosition().x<<"  " <<(int)food1->imageObject.getPosition().y;
+		map->tiles[((int)food1->imageObject.getPosition().x)/22][((int)food1->imageObject.getPosition().y)/16] = NULL;
 	}
 }
 

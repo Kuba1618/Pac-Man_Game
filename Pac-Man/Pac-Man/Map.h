@@ -26,7 +26,7 @@ public:
 	vector<Ghost*> allGhosts;
 	
 
-	Sprite tiles[22][16];
+	Sprite *tiles[22][16];
 	Map();
 	void fillKindOfTilesArray();
 	void showkindOfTiles();
