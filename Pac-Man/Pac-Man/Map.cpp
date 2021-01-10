@@ -9,6 +9,7 @@ void Map::fillKindOfTilesArray()
 		for (int x = 0; x < x_tiles; x++)
 		{
 			kindOfTiles[x][y] = 0;
+			tiles[x][y] = NULL;
 		}	
 	}
 }
@@ -28,7 +29,7 @@ void Map::showkindOfTiles()
 void Map::loadOneBrick(int x, int y)
 {
 	Brick *brick = new Brick(((float)x) * (this->tile_width), ((float)y) * (this->tile_height), "brick2.jpg");
-	tiles[x][y] = brick->imageObject;
+	tiles[x][y] = &brick->imageObject;
 	kindOfTiles[x][y] = 1;
 	allBricks.push_back(brick);
 }
@@ -50,7 +51,7 @@ void Map::loadAllBricks()
 void Map::loadOneFood(int x, int y)
 {
 	Food *food = new Food(((float)x) * (this->tile_width), ((float)y) * (this->tile_height), "food.png");
-	tiles[x][y] = food->imageObject;
+	tiles[x][y] = &food->imageObject;
 	kindOfTiles[x][y] = 2;
 	allFood.push_back(food);
 }
@@ -72,7 +73,7 @@ void Map::loadAllFood()
 void Map::loadGhost(int x,int y)
 {
 	Ghost *ghost = new Ghost(((float)x) * (this->tile_width), ((float)y) * (this->tile_height), 0.03f, "blueGhost.png");
-	tiles[x][y] = ghost->imageObject;
+	tiles[x][y] = &ghost->imageObject;
 	kindOfTiles[x][y] = 3;
 	allGhosts.push_back(ghost);
 }
@@ -104,7 +105,10 @@ void Map::displayMap(RenderWindow *window)
 	{
 		for (int x = 0; x < (this->x_tiles); x++)
 		{
-			window->draw(this->tiles[x][y]);
+			if (this->tiles[x][y] != NULL)
+			{
+				window->draw(*(this->tiles[x][y]));
+			}
 		}
 	}
 }
