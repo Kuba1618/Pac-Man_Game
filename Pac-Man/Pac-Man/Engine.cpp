@@ -18,10 +18,8 @@ void Engine::collisionPacManFood(PacMan *pacMan1, Food *food1,Map *map)
 {
 	if (pacMan1->imageObject.getGlobalBounds().intersects(food1->imageObject.getGlobalBounds()))
 	{
-		cout << "Kolizja z jedzeniem!!!\n";
-		//Sprite black;
-		//cout<<"Zwroc x= "<<(int)food1->imageObject.getPosition().x<<"  " <<(int)food1->imageObject.getPosition().y;
-		map->tiles[((int)food1->imageObject.getPosition().x)/22][((int)food1->imageObject.getPosition().y)/16] = NULL;
+		map->tiles[(int)food1->imageObject.getPosition().x/40][(int)food1->imageObject.getPosition().y/40] = NULL;
+		delete food1;
 	}
 }
 
@@ -39,7 +37,6 @@ void Engine::collisionGhostBricks(Ghost *ghost1, Brick *brick1)
 	{
 		ghost1->collision = true;
 	}
-	//ghost1->collision = false;
 }
 
 void Engine::display(RenderWindow *window)

@@ -50,7 +50,7 @@ void Map::loadAllBricks()
 
 void Map::loadOneFood(int x, int y)
 {
-	Food *food = new Food(((float)x) * (this->tile_width), ((float)y) * (this->tile_height), "food.png");
+	Food *food = new Food(((float)x) * (this->tile_width), ((float)y) * (this->tile_height), "food1.png");
 	tiles[x][y] = &food->imageObject;
 	kindOfTiles[x][y] = 2;
 	allFood.push_back(food);
