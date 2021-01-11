@@ -39,6 +39,7 @@ void Engine::collisionGhostBricks(Ghost *ghost1, Brick *brick1)
 	{
 		ghost1->collision = true;
 	}
+	//ghost1->collision = false;
 }
 
 void Engine::display(RenderWindow *window)

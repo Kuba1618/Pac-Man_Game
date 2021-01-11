@@ -40,7 +40,7 @@ void Ghost::moveGhost(int direction)
 	}
 	if (collision)
 	{
-		int changeDirection = (this->currentDirection + 1) % 2 + 1;
+		int changeDirection = (this->currentDirection + 2) % 2 + 1;
 		switch (changeDirection)
 		{
 		case 1:
