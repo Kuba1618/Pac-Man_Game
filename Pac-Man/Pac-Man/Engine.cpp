@@ -52,11 +52,20 @@ void Engine::display(RenderWindow *window)
 	map->allGhosts.push_back(ghost);
 	map->allGhosts.push_back(ghost2);
 	
-	Music song;
-	if (!song.openFromFile("Yiruma-RiverFlowsInYou.ogg"))
+	Music song,intro,death;
+	if (!song.openFromFile("../../Music/VitaminC_Graduation.wav"))
 	{
 		cout << "Blad podczas ladowania muzyki" << endl;
 	}
+	if (!intro.openFromFile("../../Music/intro.wav"))
+	{
+		cout << "Blad podczas ladowania muzyki" << endl;
+	}
+	if (!death.openFromFile("../../Music/death.wav"))
+	{
+		cout << "Blad podczas ladowania muzyki" << endl;
+	}
+	intro.play();
 	song.play();
 	while (window->isOpen() && isRunning)
 	{
