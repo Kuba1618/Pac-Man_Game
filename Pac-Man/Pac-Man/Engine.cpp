@@ -1,5 +1,6 @@
 #include <iostream>
 #include <SFML\Graphics.hpp>
+#include <SFML\Audio.hpp>
 #include "Engine.h";
 
 using namespace std;
@@ -51,6 +52,12 @@ void Engine::display(RenderWindow *window)
 	map->allGhosts.push_back(ghost);
 	map->allGhosts.push_back(ghost2);
 	
+	Music song;
+	if (!song.openFromFile("Yiruma-RiverFlowsInYou.ogg"))
+	{
+		cout << "Blad podczas ladowania muzyki" << endl;
+	}
+	song.play();
 	while (window->isOpen() && isRunning)
 	{
 		Event event;
