@@ -1,24 +1,30 @@
 #include <iostream>
 #include <SFML\Graphics.hpp>
 #include <SFML\Audio.hpp>
-#include "Engine.h";
+#include "Engine.h"
 
 using namespace std;
 using namespace sf;
 
-void Engine::collisionPacManGhost(PacMan *pacMan1, Ghost *ghost1)
+void Engine::collisionPacManGhost(PacMan *pacMan1, Ghost *ghost1,Results *results)
 {
 	pacMan1->movePacMan();
 	if (pacMan1->imageObject.getGlobalBounds().intersects(ghost1->imageObject.getGlobalBounds()))
 	{
+		
 		pacMan1->collision = true;
+		pacMan1->imageObject.setPosition(80.0f,80.0f);
+		results->lostLife();
+		results->showResult();
 	}
 }
 
-void Engine::collisionPacManFood(PacMan *pacMan1, Food *food1,Map *map)
+void Engine::collisionPacManFood(PacMan *pacMan1, Food *food1,Map *map, Results *results)
 {
 	if (pacMan1->imageObject.getGlobalBounds().intersects(food1->imageObject.getGlobalBounds()))
 	{
+		results->eatFood();
+		results->showResult();
 		map->tiles[(int)food1->imageObject.getPosition().x/40][(int)food1->imageObject.getPosition().y/40] = NULL;
 		delete food1;
 	}
@@ -42,7 +48,8 @@ void Engine::collisionGhostBricks(Ghost *ghost1, Brick *brick1)
 
 void Engine::display(RenderWindow *window)
 {
-	Ghost *ghost = new Ghost((120.0f), (200.0f), 0.03f, "orangeGhost.png", 1);
+	Results *results = new Results();
+	Ghost *ghost = new Ghost((120.0f), (200.0f), 0.03f, "orangeGhost.png", 0);
 	Ghost *ghost2 = new Ghost((220.0f),(120.0f),0.03f,"blueGhost.png",2);
 	PacMan *pacMan = new PacMan((300.0f), (360.0f), 0.06f, "pacManIcon.png");
 		
@@ -65,8 +72,8 @@ void Engine::display(RenderWindow *window)
 	{
 		cout << "Blad podczas ladowania muzyki" << endl;
 	}
-	intro.play();
-	song.play();
+	//intro.play();
+	//song.play();
 	while (window->isOpen() && isRunning)
 	{
 		Event event;
@@ -84,11 +91,11 @@ void Engine::display(RenderWindow *window)
 		window->draw(pacMan->imageObject);
 		for (Ghost *gh : map->allGhosts)
 		{
-			collisionPacManGhost(pacMan, gh);
+			collisionPacManGhost(pacMan, gh,results);
 		}
 		for (Food *fd : map->allFood)
 		{
-			collisionPacManFood(pacMan, fd, map);
+			collisionPacManFood(pacMan, fd, map,results);
 		}
 		for (Brick *bk : map->allBricks)
 		{

@@ -7,7 +7,6 @@ using namespace sf;
 
 class Food : public Object
 {
-    int howManyFood;
 public:
 	Food::Food(float posX = 55.0f ,float posY = 50.0f ,String nameOfImage = "food.png");
 	Food::~Food();

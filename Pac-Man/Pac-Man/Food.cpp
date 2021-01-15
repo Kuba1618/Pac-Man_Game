@@ -4,10 +4,7 @@
 
 using namespace std;
 
-Food::Food(float posX, float posY,String nameOfImage) : Object(posX, posY, nameOfImage)
-{
-	howManyFood++;
-}
+Food::Food(float posX, float posY,String nameOfImage) : Object(posX, posY, nameOfImage){}
 Food::~Food()
 {
 	eat();
@@ -15,6 +12,5 @@ Food::~Food()
 
 void Food::eat()
 {
-	this->howManyFood--;
-	cout << "Pozostalo: " << howManyFood << "sztuk jedzenia\n";
+	//cout << "Pozostalo: " << howManyFood << "sztuk jedzenia\n";
 }
