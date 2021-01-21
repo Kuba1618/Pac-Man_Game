@@ -44,6 +44,46 @@ void Map::loadAllBricks()
 			{
 				loadOneBrick(x, y);
 			}
+			if (((x >4 && x < 10) && y == 10) || ((x >11 && x <16) && y == 10) || ((x >17 && x <21)  && y == 10 ))
+			{
+				loadOneBrick(x, y);
+			}
+			if (((y >2 && y < 9) && x == 3) || ((y >11 && y <15) && x == 8) || ((y >16 && y <20) && x == 10))
+			{
+				loadOneBrick(x, y);
+			}
+			if (((x > 1 && x < 7) && (y == 12)) || (x==5 && y > 12) )
+			{
+				loadOneBrick(x, y);
+			}
+			if (((x >9 && x < 13) && (y == 13)) || ((x >15 && x < 18) && (y == 13)))
+			{
+				loadOneBrick(x, y);
+			}
+			if (((y > 11 && y < 16) && x == 14) || ((y >11 && y <16) && x == 19))
+			{
+				loadOneBrick(x, y);
+			}
+			if (((x > 4 && x < 9) && y == 3) || ((x >11 && x <15) && y == 3) || ((x >17 && x <20) && y == 3))
+			{
+				loadOneBrick(x, y);
+			}
+			if(((y > 0 && y< 6) && x==16) || (x==10 && (y>1 && y<8)))
+			{
+				loadOneBrick(x, y);
+			}
+			if(((x==6 || x==7) && y==5) || ((x == 6 || x == 7) && y == 6) || ((x == 6 || x == 7) && y == 7) || ((x == 6 || x == 7) && y == 8))
+			{
+				loadOneBrick(x, y);
+			}
+			if(((y == 7 || y == 8) && x == 18) || ((x == 16 || x == 17) && y == 7) || ((x == 16 || x == 17) && y == 8))
+			{
+				loadOneBrick(x, y);
+			}
+			if((x==13 && (y>4 && y<9)) )//|| (x == 13 && (y>8 && y<14)))
+			{
+				loadOneBrick(x, y);
+			}
 		}
 	}
 }
@@ -94,7 +134,7 @@ void Map::loadAllGhosts()
 
 void Map::loadMap()
 {
-	loadAllFood();
+	//loadAllFood();
 	loadAllBricks();
 	//loadAllGhosts();
 }

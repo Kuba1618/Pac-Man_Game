@@ -49,8 +49,8 @@ void Engine::collisionGhostBricks(Ghost *ghost1, Brick *brick1)
 void Engine::display(RenderWindow *window)
 {
 	Results *results = new Results();
-	Ghost *ghost = new Ghost((120.0f), (200.0f), 0.03f, "orangeGhost.png", 0);
-	Ghost *ghost2 = new Ghost((220.0f),(120.0f),0.03f,"blueGhost.png",2);
+	Ghost *ghost = new Ghost((220.0f), (80.0f), 0.13f, "orangeGhost.png", 0); 
+	Ghost *ghost2 = new Ghost((80.0f), (200.0f), 0.13f, "blueGhost.png", 2);
 	PacMan *pacMan = new PacMan((300.0f), (360.0f), 0.06f, "pacManIcon.png");
 		
 	Map *map = new Map();
