@@ -6,6 +6,7 @@
 #include "Food.h";
 #include "Ghost.h";
 #include <iostream>;
+#include <Windows.h>;
 
 using namespace sf;
 using namespace std;
@@ -34,7 +35,6 @@ public:
 	void loadOneFood(int x, int y);
 	void loadAllFood();
 	void loadGhost(int x, int y,String nameOfImage,int direction);
-	void loadAllGhosts();
 	void loadMap();
 	void displayMap(RenderWindow *window);
 };

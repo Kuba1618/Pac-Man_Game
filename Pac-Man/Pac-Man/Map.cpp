@@ -90,8 +90,8 @@ void Map::loadAllBricks()
 
 void Map::loadOneFood(int x, int y)
 {   
-	float posX = ((float)x) * (this->tile_width) - 20;
-	float posY = ((float)y) * (this->tile_height) - 20;
+	float posX = ((float)x) * (this->tile_width) + 20;
+	float posY = ((float)y) * (this->tile_height) + 20;
 	Food *food = new Food(posX, posY, "food.png");
 	tiles[x][y] = &food->imageObject;
 	kindOfTiles[x][y] = 2;
@@ -100,7 +100,25 @@ void Map::loadOneFood(int x, int y)
 
 void Map::loadAllFood()
 {
-	for (int y = 0; y < (this->y_tiles); y++)
+	int posX;
+	int posY;
+	int howManyFood = 0;
+	srand(time(NULL));
+	
+	
+	while (howManyFood <= 30)
+	{
+		posX = (rand() % 20) + 2;
+		posY = (rand() % 14) + 2;
+		if (kindOfTiles[posX][posY] == 0)
+		{
+			loadOneFood(posX, posY);
+			howManyFood++;
+		}
+	}
+	
+
+	/*for (int y = 0; y < (this->y_tiles); y++)
 	{
 		for (int x = 0; x < (this->x_tiles); x++)
 		{
@@ -109,7 +127,7 @@ void Map::loadAllFood()
 				loadOneFood(x, y);
 			}
 		}
-	}
+	}*/
 }
 
 void Map::loadGhost(int x,int y, String nameOfImage, int direction)
@@ -120,16 +138,10 @@ void Map::loadGhost(int x,int y, String nameOfImage, int direction)
 	allGhosts.push_back(ghost);
 }
 
-void Map::loadAllGhosts()
-{
-	
-}
-
 void Map::loadMap()
 {
-	loadAllFood();
 	loadAllBricks();
-	//loadAllGhosts();
+	loadAllFood(); //have to be call on the end in loadMap()
 }
 
 void Map::displayMap(RenderWindow *window)

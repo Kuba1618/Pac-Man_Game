@@ -41,7 +41,7 @@ void Engine::collisionPacManFood(PacMan *pacMan1, Food *food1,Map *map, Results 
 		results->showResult();
 		map->tiles[(int)food1->imageObject.getPosition().x/40][(int)food1->imageObject.getPosition().y/40] = NULL;
 		delete food1;
-		Sleep(292);
+		Sleep(50);
 	}
 }
 
@@ -79,7 +79,7 @@ void Engine::display(RenderWindow *window)
 	{
 		cout << "Blad podczas ladowania muzyki" << endl;
 	}
-	//intro.play();
+	intro.play();
 	
 	
 	while (window->isOpen() && isRunning)
@@ -127,8 +127,22 @@ void Engine::display(RenderWindow *window)
 		{
 			cout << "Blad podczas ladowania muzyki" << endl;
 		}
-		//death.play();
-		Sleep(1650);
+		death.play();
+
+		/*RenderWindow gameOverWindow(VideoMode(300, 150), "Game Over");
+		while (gameOverWindow.isOpen())
+		{
+			Event event;
+			while (window->pollEvent(event))
+			{
+				if (event.type == Event::Closed)
+					window->close();
+			}
+			gameOverWindow.clear(Color::Black);
+			window->display();
+		}*/
+		
+		Sleep(1700);
 		window->close();
 	//map->showkindOfTiles();
 	system("pause");
