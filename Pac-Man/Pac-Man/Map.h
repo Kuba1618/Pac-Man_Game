@@ -33,7 +33,7 @@ public:
 	void loadAllBricks();
 	void loadOneFood(int x, int y);
 	void loadAllFood();
-	void loadGhost(int x, int y,String nameOfImage);
+	void loadGhost(int x, int y,String nameOfImage,int direction);
 	void loadAllGhosts();
 	void loadMap();
 	void displayMap(RenderWindow *window);

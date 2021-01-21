@@ -61,10 +61,11 @@ void Engine::display(RenderWindow *window)
 	Map *map = new Map();
 	map->fillKindOfTilesArray();
 	map->loadMap();
-	map->loadGhost(3, 1, "blueGhost.png");
-	map->loadGhost(2, 9, "blueGhost.png");
-	map->loadGhost(12, 4, "orangeGhost.png");
-
+	map->loadGhost(3, 1, "orangeGhost.png",0);
+	map->loadGhost(2, 9, "blueGhost.png",0);
+	map->loadGhost(5, 5, "orangeGhost.png", 2);
+	map->loadGhost(11, 5, "blueGhost.png",2);
+	map->loadGhost(16, 6, "orangeGhost.png",0);
 	Music intro;
 	if (!intro.openFromFile("../../Music/intro.wav"))
 	{
