@@ -46,7 +46,7 @@ void PacMan::movePacMan()
 	{
 		if (Keyboard::isKeyPressed(this->currentDirection))
 		{
-			//Do nothing
+			//DO NOTHING
 		}
 		else if (!Keyboard::isKeyPressed(this->currentDirection))
 		{
@@ -67,7 +67,6 @@ void PacMan::movePacMan()
 			}
 			if (Keyboard::isKeyPressed(Keyboard::Key::Up))
 			{
-
 				this->setTexture("pacManIconUp.png");
 				this->imageObject.setTexture(this->texture);
 				this->imageObject.move(0.00f, -(this->speed));
@@ -79,6 +78,10 @@ void PacMan::movePacMan()
 				this->imageObject.setTexture(this->texture);
 				this->imageObject.move(0.00f, (this->speed));
 				this->currentDirection = Keyboard::Key::Down;
+			}
+			while(Keyboard::isKeyPressed(Keyboard::Key::Space))
+			{
+				this->imageObject.setPosition(280.0f, 540.0f);
 			}
 		}
 

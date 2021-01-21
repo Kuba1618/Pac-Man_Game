@@ -13,7 +13,7 @@ void Engine::collisionPacManGhost(PacMan *pacMan1, Ghost *ghost1,Results *result
 	{
 		
 		pacMan1->collision = true;
-		pacMan1->imageObject.setPosition(80.0f,80.0f);
+		pacMan1->imageObject.setPosition(280.0f,540.0f);
 		results->lostLife();
 		results->showResult();
 	}

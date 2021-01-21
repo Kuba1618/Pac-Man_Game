@@ -52,7 +52,7 @@ void Map::loadAllBricks()
 			{
 				loadOneBrick(x, y);
 			}
-			if (((x > 1 && x < 7) && (y == 12)) || (x==5 && y > 12) )
+			if (((x > 1 && x < 6) && (y == 12)) || (x==5 && y > 12) )
 			{
 				loadOneBrick(x, y);
 			}
