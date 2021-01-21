@@ -11,11 +11,18 @@ void Engine::collisionPacManGhost(PacMan *pacMan1, Ghost *ghost1,Results *result
 	pacMan1->movePacMan();
 	if (pacMan1->imageObject.getGlobalBounds().intersects(ghost1->imageObject.getGlobalBounds()))
 	{
-		
+		Music hitGhost;
+		if (!hitGhost.openFromFile("../../Music/Ghost.wav"))
+		{
+			cout << "Blad podczas ladowania muzyki" << endl;
+		}
 		pacMan1->collision = true;
+		hitGhost.setPitch(1.5f);
+		hitGhost.play();
 		pacMan1->imageObject.setPosition(280.0f,540.0f);
 		results->lostLife();
 		results->showResult();
+		Sleep(382);
 	}
 }
 
@@ -49,31 +56,22 @@ void Engine::collisionGhostBricks(Ghost *ghost1, Brick *brick1)
 void Engine::display(RenderWindow *window)
 {
 	Results *results = new Results();
-	Ghost *ghost = new Ghost((220.0f), (80.0f), 0.13f, "orangeGhost.png", 0); 
-	Ghost *ghost2 = new Ghost((80.0f), (200.0f), 0.13f, "blueGhost.png", 2);
 	PacMan *pacMan = new PacMan((300.0f), (360.0f), 0.06f, "pacManIcon.png");
 		
 	Map *map = new Map();
 	map->fillKindOfTilesArray();
 	map->loadMap();
-	map->allGhosts.push_back(ghost);
-	map->allGhosts.push_back(ghost2);
-	
-	Music song,intro,death;
-	if (!song.openFromFile("../../Music/VitaminC_Graduation.wav"))
-	{
-		cout << "Blad podczas ladowania muzyki" << endl;
-	}
+	map->loadGhost(3, 1, "blueGhost.png");
+	map->loadGhost(2, 9, "blueGhost.png");
+	map->loadGhost(12, 4, "orangeGhost.png");
+
+	Music intro;
 	if (!intro.openFromFile("../../Music/intro.wav"))
 	{
 		cout << "Blad podczas ladowania muzyki" << endl;
 	}
-	if (!death.openFromFile("../../Music/death.wav"))
-	{
-		cout << "Blad podczas ladowania muzyki" << endl;
-	}
 	//intro.play();
-	//song.play();
+	
 	while (window->isOpen() && isRunning)
 	{
 		Event event;
@@ -82,12 +80,12 @@ void Engine::display(RenderWindow *window)
 			if (event.type == Event::Closed)
 				window->close();
 		}
+		if (results->numberOfLife == 0)
+		{
+			isRunning = false;
+		}
 		window->clear(Color::Black);
 		map->displayMap(window);
-		window->draw(ghost->imageObject);
-		ghost->moveGhost(ghost->currentDirection);
-		window->draw(ghost2->imageObject);
-		ghost2->moveGhost(ghost2->currentDirection);
 		window->draw(pacMan->imageObject);
 		for (Ghost *gh : map->allGhosts)
 		{
@@ -103,6 +101,7 @@ void Engine::display(RenderWindow *window)
 		}
 		for (Ghost *gh : map->allGhosts)
 		{
+			gh->moveGhost(gh->currentDirection);
 			for (Brick *bk : map->allBricks)
 			{
 				collisionGhostBricks(gh,bk);
@@ -110,6 +109,22 @@ void Engine::display(RenderWindow *window)
 		}
 		window->display();
 	}
+		/*Music hitGhost;
+		if (!hitGhost.openFromFile("../../Music/Ghost.wav"))
+		{
+			cout << "Blad podczas ladowania muzyki" << endl;
+		}
+		cout << hitGhost.getDuration().asMilliseconds();*/
+	
+	
+		Music death;
+		if (!death.openFromFile("../../Music/Death.wav"))
+		{
+			cout << "Blad podczas ladowania muzyki" << endl;
+		}
+		//death.play();
+		Sleep(1650);
+		window->close();
 	//map->showkindOfTiles();
 	system("pause");
 }

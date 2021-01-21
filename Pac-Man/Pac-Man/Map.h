@@ -5,7 +5,6 @@
 #include "Brick.h";
 #include "Food.h";
 #include "Ghost.h";
-#include <queue>;
 #include <iostream>;
 
 using namespace sf;
@@ -34,10 +33,9 @@ public:
 	void loadAllBricks();
 	void loadOneFood(int x, int y);
 	void loadAllFood();
-	void loadGhost(int x, int y);
+	void loadGhost(int x, int y,String nameOfImage);
 	void loadAllGhosts();
 	void loadMap();
 	void displayMap(RenderWindow *window);
-	void moveGhosts();
 };
 #endif

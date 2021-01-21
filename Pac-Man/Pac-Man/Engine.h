@@ -9,6 +9,7 @@
 #include "PacMan.h";
 #include "Food.h";
 #include "Results.h";
+#include <windows.h>
 #include <iostream>
 
 using namespace std;
@@ -19,10 +20,9 @@ class Engine
 
 public:
 	bool isRunning = true;
-
+	
 	void startGame();
 	void display(RenderWindow *window);
-	//void moveObject(Ghost *ghost, Map *map);
 	void collisionPacManGhost(PacMan *object1, Ghost *object2, Results *results);
 	void collisionPacManFood(PacMan *object1, Food *object2, Map *map, Results *results);
 	void collisionPacManBricks(Ghost *object1, Brick *object2);

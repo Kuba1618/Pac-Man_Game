@@ -110,9 +110,9 @@ void Map::loadAllFood()
 	}
 }
 
-void Map::loadGhost(int x,int y)
+void Map::loadGhost(int x,int y, String nameOfImage)
 {
-	Ghost *ghost = new Ghost(((float)x) * (this->tile_width), ((float)y) * (this->tile_height), 0.03f, "blueGhost.png");
+	Ghost *ghost = new Ghost(((float)x) * (this->tile_width), ((float)y) * (this->tile_height), 0.05f, nameOfImage);
 	tiles[x][y] = &ghost->imageObject;
 	kindOfTiles[x][y] = 3;
 	allGhosts.push_back(ghost);
@@ -120,16 +120,7 @@ void Map::loadGhost(int x,int y)
 
 void Map::loadAllGhosts()
 {
-	for (int y = 0; y < (this->y_tiles); y++)
-	{
-		for (int x = 0; x < (this->x_tiles); x++)
-		{
-			if ((x == 10 && y == 8 ) || (x == 12 && y == 14))
-			{
-				loadGhost(x, y);
-			}
-		}
-	}
+	
 }
 
 void Map::loadMap()
@@ -151,12 +142,4 @@ void Map::displayMap(RenderWindow *window)
 			}
 		}
 	}
-}
-
-void Map::moveGhosts()
-{
-	/*for (Ghost *ghost : allGhosts)
-	{
-		ghost->moveGhost(2);
-	}*/
 }
