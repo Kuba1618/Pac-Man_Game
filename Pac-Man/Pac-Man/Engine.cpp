@@ -30,10 +30,18 @@ void Engine::collisionPacManFood(PacMan *pacMan1, Food *food1,Map *map, Results 
 {
 	if (pacMan1->imageObject.getGlobalBounds().intersects(food1->imageObject.getGlobalBounds()))
 	{
+		Music fruit;
+		if (!fruit.openFromFile("../../Music/Fruit.wav"))
+		{
+			cout << "Blad podczas ladowania muzyki" << endl;
+		}
+		fruit.setPitch(1.5f);
+		fruit.play();
 		results->eatFood();
 		results->showResult();
 		map->tiles[(int)food1->imageObject.getPosition().x/40][(int)food1->imageObject.getPosition().y/40] = NULL;
 		delete food1;
+		Sleep(292);
 	}
 }
 
@@ -73,6 +81,7 @@ void Engine::display(RenderWindow *window)
 	}
 	//intro.play();
 	
+	
 	while (window->isOpen() && isRunning)
 	{
 		Event event;
@@ -110,12 +119,7 @@ void Engine::display(RenderWindow *window)
 		}
 		window->display();
 	}
-		/*Music hitGhost;
-		if (!hitGhost.openFromFile("../../Music/Ghost.wav"))
-		{
-			cout << "Blad podczas ladowania muzyki" << endl;
-		}
-		cout << hitGhost.getDuration().asMilliseconds();*/
+		
 	
 	
 		Music death;

@@ -89,8 +89,10 @@ void Map::loadAllBricks()
 }
 
 void Map::loadOneFood(int x, int y)
-{
-	Food *food = new Food(((float)x) * (this->tile_width), ((float)y) * (this->tile_height), "food1.png");
+{   
+	float posX = ((float)x) * (this->tile_width) - 20;
+	float posY = ((float)y) * (this->tile_height) - 20;
+	Food *food = new Food(posX, posY, "food.png");
 	tiles[x][y] = &food->imageObject;
 	kindOfTiles[x][y] = 2;
 	allFood.push_back(food);
@@ -102,7 +104,7 @@ void Map::loadAllFood()
 	{
 		for (int x = 0; x < (this->x_tiles); x++)
 		{
-			if (x == 10 && y > 1 && y < 8)
+			if (x == 2 && y > 1 && y < 8)
 			{
 				loadOneFood(x, y);
 			}
@@ -125,7 +127,7 @@ void Map::loadAllGhosts()
 
 void Map::loadMap()
 {
-	//loadAllFood();
+	loadAllFood();
 	loadAllBricks();
 	//loadAllGhosts();
 }
