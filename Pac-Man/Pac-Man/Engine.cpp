@@ -64,7 +64,7 @@ void Engine::collisionGhostBricks(Ghost *ghost1, Brick *brick1)
 void Engine::display(RenderWindow *window)
 {
 	Results *results = new Results();
-	PacMan *pacMan = new PacMan((300.0f), (360.0f), 0.06f, "pacManIcon.png");
+	PacMan *pacMan = new PacMan((300.0f), (360.0f), 0.9f, "pacManIcon.png");
 		
 	Map *map = new Map();
 	map->fillKindOfTilesArray();

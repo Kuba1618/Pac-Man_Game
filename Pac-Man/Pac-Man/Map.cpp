@@ -106,7 +106,7 @@ void Map::loadAllFood()
 	srand(time(NULL));
 	
 	
-	while (howManyFood <= 30)
+	while (howManyFood < 25)
 	{
 		posX = (rand() % 20) + 2;
 		posY = (rand() % 14) + 2;
@@ -132,7 +132,7 @@ void Map::loadAllFood()
 
 void Map::loadGhost(int x,int y, String nameOfImage, int direction)
 {
-	Ghost *ghost = new Ghost(((float)x) * (this->tile_width), ((float)y) * (this->tile_height), 0.05f, nameOfImage,direction);
+	Ghost *ghost = new Ghost(((float)x) * (this->tile_width), ((float)y) * (this->tile_height), 0.12f, nameOfImage,direction);
 	tiles[x][y] = &ghost->imageObject;
 	kindOfTiles[x][y] = 3;
 	allGhosts.push_back(ghost);
