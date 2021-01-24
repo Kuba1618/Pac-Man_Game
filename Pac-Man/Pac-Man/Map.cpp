@@ -28,7 +28,7 @@ void Map::showkindOfTiles()
 
 void Map::loadOneBrick(int x, int y)
 {
-	Brick *brick = new Brick(((float)x) * (this->tile_width), ((float)y) * (this->tile_height), "brick2.jpg");
+	Brick *brick = new Brick(((float)x) * (this->tile_width), ((float)y) * (this->tile_height), "brick3.jpg");
 	tiles[x][y] = &brick->imageObject;
 	kindOfTiles[x][y] = 1;
 	allBricks.push_back(brick);
@@ -106,7 +106,7 @@ void Map::loadAllFood()
 	srand(time(NULL));
 	
 	
-	while (howManyFood < 25)
+	while (howManyFood < 25)       //render some food 
 	{
 		posX = (rand() % 20) + 2;
 		posY = (rand() % 14) + 2;
@@ -118,11 +118,11 @@ void Map::loadAllFood()
 	}
 	
 
-	/*for (int y = 0; y < (this->y_tiles); y++)
+	/*for (int y = 0; y < (this->y_tiles); y++)   
 	{
 		for (int x = 0; x < (this->x_tiles); x++)
 		{
-			if (x == 2 && y > 1 && y < 8)
+			if (x == 2 && y > 1 && y < 8)       //set some food
 			{
 				loadOneFood(x, y);
 			}
@@ -141,7 +141,7 @@ void Map::loadGhost(int x,int y, String nameOfImage, int direction)
 void Map::loadMap()
 {
 	loadAllBricks();
-	loadAllFood(); //have to be call on the end in loadMap()
+	loadAllFood(); //have to be call as last in loadMap()
 }
 
 void Map::displayMap(RenderWindow *window)
