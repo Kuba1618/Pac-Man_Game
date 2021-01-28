@@ -61,7 +61,7 @@ void Engine::collisionGhostBricks(Ghost *ghost1, Brick *brick1)
 	}
 }
 
-void Engine::display(RenderWindow *window)
+bool Engine::display(RenderWindow *window,Color colorOfMap)
 {
 	Results *results = new Results();
 	PacMan *pacMan = new PacMan((300.0f), (360.0f), 0.5f, "pacManIcon.png");
@@ -94,7 +94,7 @@ void Engine::display(RenderWindow *window)
 		{
 			isRunning = false;
 		}
-		window->clear(Color::Black);
+		window->clear(colorOfMap);
 		map->displayMap(window);
 		window->draw(pacMan->imageObject);
 		for (Ghost *gh : map->allGhosts)
@@ -142,16 +142,84 @@ void Engine::display(RenderWindow *window)
 			window->display();
 		}*/
 		
-		Sleep(1700);
-		window->close();
+		
+		
 	//map->showkindOfTiles();
 	system("pause");
+	Sleep(1700);
+	return false;
 }
 
 void Engine::startGame()
 {
-	RenderWindow window(VideoMode(880, 640), "Pac-Man");
-	display(&window);
+	sf::RenderWindow window(sf::VideoMode(880, 640), "Pac-Man Menu");
+
+	MainMenu menu(window.getSize().x, window.getSize().y);
+	Color colorOfMap = Color::Black;
+	while (window.isOpen())
+	{
+		sf::Event event;
+
+		while (window.pollEvent(event))
+		{
+			switch (event.type)
+			{
+			case sf::Event::KeyReleased:
+				switch (event.key.code)
+				{
+				case sf::Keyboard::Up:
+					menu.MoveUp();
+					break;
+
+				case sf::Keyboard::Down:
+					menu.MoveDown();
+					break;
+
+				case sf::Keyboard::Return:
+					switch (menu.GetPressedItem())
+					{
+						case 0:
+								{
+							        //std::cout << "Play button has been pressed" << std::endl;
+									RenderWindow window2(VideoMode(880, 640), "Pac-Man"); 
+									window.close();
+									display(&window2,colorOfMap);
+									if (!window2.isOpen())
+									{
+										window2.close();
+									}
+									break;
+								}
+						case 1:
+								{
+									std::cout << "Option button has been pressed" << std::endl;
+									break;
+								}
+						case 2:
+								{
+									window.close();
+									break;
+								}
+					}
+
+					break;
+				}
+
+				break;
+			case sf::Event::Closed:
+				window.close();
+
+				break;
+
+			}
+		}
+
+		window.clear();
+
+		menu.draw(window);
+
+		window.display();
+	}
 }
 
 void Engine::endGame()

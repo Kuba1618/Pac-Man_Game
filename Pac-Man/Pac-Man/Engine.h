@@ -9,6 +9,7 @@
 #include "PacMan.h";
 #include "Food.h";
 #include "Results.h";
+#include "MainMenu.h";
 #include <windows.h>
 #include <iostream>
 
@@ -20,9 +21,9 @@ class Engine
 
 public:
 	bool isRunning = true;
-	
+		
 	void startGame();
-	void display(RenderWindow *window);
+	bool display(RenderWindow *window,Color colorOfMap);
 	void collisionPacManGhost(PacMan *object1, Ghost *object2, Results *results);
 	void collisionPacManFood(PacMan *object1, Food *object2, Map *map, Results *results);
 	void collisionPacManBricks(Ghost *object1, Brick *object2);

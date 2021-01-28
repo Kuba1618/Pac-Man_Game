@@ -18,7 +18,7 @@ public:
 	const int y_tiles = 16;
 	int kindOfTiles[22][16];    // 0 - nothing; 1 - wall; 2 - food; 3 - ghost; 4 - pacMan 
 	float tile_width = 40.0f;
-	float tile_height = 40.0f; \
+	float tile_height = 40.0f; 
 	int counter = 0;
 	
 	vector<Brick*> allBricks;
