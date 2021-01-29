@@ -17,8 +17,12 @@ void Engine::collisionPacManGhost(PacMan *pacMan1, Ghost *ghost1,Results *result
 			cout << "Blad podczas ladowania muzyki" << endl;
 		}
 		pacMan1->collision = true;
-		hitGhost.setPitch(1.5f);
-		hitGhost.play();
+		if (sound)
+		{
+			hitGhost.setPitch(1.5f);
+			hitGhost.play();
+		}
+		
 		pacMan1->imageObject.setPosition(280.0f,540.0f);
 		results->lostLife();
 		results->showResult();
@@ -35,8 +39,13 @@ void Engine::collisionPacManFood(PacMan *pacMan1, Food *food1,Map *map, Results 
 		{
 			cout << "Blad podczas ladowania muzyki" << endl;
 		}
-		fruit.setPitch(1.5f);
-		fruit.play();
+		
+		if (sound)
+		{
+			fruit.setPitch(1.5f);
+			fruit.play();
+		}
+		
 		results->eatFood();
 		results->showResult();
 		map->tiles[(int)food1->imageObject.getPosition().x/40][(int)food1->imageObject.getPosition().y/40] = NULL;
@@ -79,7 +88,11 @@ bool Engine::display(RenderWindow *window,Color colorOfMap)
 	{
 		cout << "Blad podczas ladowania muzyki" << endl;
 	}
-	intro.play();
+	if (sound)
+	{
+		intro.play();
+	}
+	
 	
 	
 	while (window->isOpen() && isRunning)
@@ -127,7 +140,11 @@ bool Engine::display(RenderWindow *window,Color colorOfMap)
 		{
 			cout << "Blad podczas ladowania muzyki" << endl;
 		}
-		death.play();
+		if (sound)
+		{
+			death.play();
+		}
+		
 
 		/*RenderWindow gameOverWindow(VideoMode(300, 150), "Game Over");
 		while (gameOverWindow.isOpen())
@@ -162,6 +179,7 @@ void Engine::startGame()
 
 		while (window.pollEvent(event))
 		{
+
 			switch (event.type)
 			{
 			case sf::Event::KeyReleased:
@@ -192,6 +210,7 @@ void Engine::startGame()
 								}
 						case 1:
 								{
+									sound = false;
 									std::cout << "Option button has been pressed" << std::endl;
 									break;
 								}

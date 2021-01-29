@@ -21,6 +21,7 @@ class Engine
 
 public:
 	bool isRunning = true;
+	bool sound = true;
 		
 	void startGame();
 	bool display(RenderWindow *window,Color colorOfMap);

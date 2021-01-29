@@ -8,13 +8,13 @@ MainMenu::MainMenu(float width, float height)
 	}
 
 	menu[0].setFont(font);
-	menu[0].setFillColor(Color::Red);
+	menu[0].setFillColor(Color::Blue);
 	menu[0].setString("Play");
 	menu[0].setPosition(Vector2f(width / 2 - 40, height / (MAX_NUMBER_OF_ITEMS + 1) * 1));
 
 	menu[1].setFont(font);
 	menu[1].setFillColor(Color::White);
-	menu[1].setString("Options");
+	menu[1].setString("Sound");
 	menu[1].setPosition(Vector2f(width / 2 - 60, height / (MAX_NUMBER_OF_ITEMS + 1) * 2));
 
 	menu[2].setFont(font);
@@ -44,7 +44,7 @@ void MainMenu::MoveUp()
 	{
 		menu[selectedItemIndex].setFillColor(Color::White);
 		selectedItemIndex--;
-		menu[selectedItemIndex].setFillColor(Color::Red);
+		menu[selectedItemIndex].setFillColor(Color::Blue);
 	}
 }
 
@@ -54,6 +54,6 @@ void MainMenu::MoveDown()
 	{
 		menu[selectedItemIndex].setFillColor(Color::White);
 		selectedItemIndex++;
-		menu[selectedItemIndex].setFillColor(Color::Red);
+		menu[selectedItemIndex].setFillColor(Color::Blue);
 	}
 }
